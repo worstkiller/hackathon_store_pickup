@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1060968001959",
+    "project_id": "instorepickup-daa60",
+    "storage_bucket": "instorepickup-daa60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060968001959:android:35fcdea9c067db348ec682",
+        "android_client_info": {
+          "package_name": "com.falabella.storepickup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060968001959-7tod7iud8bqba3oi04lj64462r7h5ujt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfS8Gv4p85PT-7pwrWFZZ6zU5FsbK_cZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060968001959-7tod7iud8bqba3oi04lj64462r7h5ujt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
