@@ -19,7 +19,7 @@ class OrderListRepository {
                 orderPrice = "200$",
                 slotId = "1234",
                 documentNo = "1doc",
-                listOf("", ""),
+                emptyList(),
                 isCompleted = false
 
             ),
@@ -35,7 +35,7 @@ class OrderListRepository {
                 orderPrice = "200$",
                 slotId = "1235",
                 documentNo = "1doc",
-                listOf("", ""),
+                emptyList(),
                 isCompleted = true
             ),
             StoreAppointmentModel(
@@ -50,7 +50,7 @@ class OrderListRepository {
                 orderPrice = "200$",
                 slotId = "1234",
                 documentNo = "1doc",
-                listOf("", ""),
+                emptyList(),
                 isCompleted = true
             ),
             StoreAppointmentModel(
@@ -65,7 +65,7 @@ class OrderListRepository {
                 orderPrice = "200$",
                 slotId = "1234",
                 documentNo = "1doc",
-                listOf("", ""),
+                emptyList(),
                 isCompleted = true
             ),
             StoreAppointmentModel(
@@ -80,7 +80,7 @@ class OrderListRepository {
                 orderPrice = "100$",
                 slotId = "1234",
                 documentNo = "5doc",
-                listOf("", ""),
+                emptyList(),
                 isCompleted = true
             ),
             StoreAppointmentModel(

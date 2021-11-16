@@ -16,10 +16,9 @@ data class StoreAppointmentModel(
     val orderPrice: String? = null,
     val slotId: String? = null,
     val documentNo: String? = null,
-    val images: List<String>? = null,
+    val products: List<Product>? = null,
     val isCompleted: Boolean = false
 ) : Parcelable {
-
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
@@ -32,7 +31,7 @@ data class StoreAppointmentModel(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.createStringArrayList(),
+        parcel.createTypedArrayList(Product),
         parcel.readByte() != 0.toByte()
     ) {
     }
@@ -49,7 +48,7 @@ data class StoreAppointmentModel(
         parcel.writeString(orderPrice)
         parcel.writeString(slotId)
         parcel.writeString(documentNo)
-        parcel.writeStringList(images)
+        parcel.writeTypedList(products)
         parcel.writeByte(if (isCompleted) 1 else 0)
     }
 
@@ -58,7 +57,6 @@ data class StoreAppointmentModel(
     }
 
     companion object CREATOR : Creator<StoreAppointmentModel> {
-
         override fun createFromParcel(parcel: Parcel): StoreAppointmentModel {
             return StoreAppointmentModel(parcel)
         }
@@ -67,4 +65,36 @@ data class StoreAppointmentModel(
             return arrayOfNulls(size)
         }
     }
+
+
+}
+
+data class Product(val image: String?, val price: Float, val quantity: Int) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readFloat(),
+        parcel.readInt()
+    ) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(image)
+        parcel.writeFloat(price)
+        parcel.writeInt(quantity)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Creator<Product> {
+        override fun createFromParcel(parcel: Parcel): Product {
+            return Product(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Product?> {
+            return arrayOfNulls(size)
+        }
+    }
+
 }
