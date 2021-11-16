@@ -22,7 +22,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="32dp"
         android:layout_marginBottom="2dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/timeTv"
@@ -74,8 +74,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:src="@drawable/ic_completed"
                 android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_completed"
                 android:layout_width="30dp"
                 android:layout_height="40dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>

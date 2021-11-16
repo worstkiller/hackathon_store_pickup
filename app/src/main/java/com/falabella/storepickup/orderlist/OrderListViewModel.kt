@@ -6,7 +6,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.falabella.storepickup.model.StoreAppointmentModel
 
-class PageViewModel : ViewModel() {
+class OrderListViewModel : ViewModel() {
 
     private val orderListRepository = OrderListRepository()
 

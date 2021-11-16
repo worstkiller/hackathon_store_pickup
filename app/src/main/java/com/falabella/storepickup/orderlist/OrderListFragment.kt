@@ -20,7 +20,7 @@ import com.falabella.storepickup.utils.UiUtils
  */
 class OrderListFragment : Fragment(), ItemClickListener {
 
-    private lateinit var pageViewModel: PageViewModel
+    private lateinit var orderListViewModel: OrderListViewModel
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
@@ -29,7 +29,7 @@ class OrderListFragment : Fragment(), ItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pageViewModel = ViewModelProvider(this).get(PageViewModel::class.java).apply {
+        orderListViewModel = ViewModelProvider(this).get(OrderListViewModel::class.java).apply {
             setIsCompleted(arguments?.getBoolean(ARG_SECTION_NUMBER) ?: false)
         }
     }
@@ -43,8 +43,8 @@ class OrderListFragment : Fragment(), ItemClickListener {
         val root = binding.root
 
         context?.apply {
-            pageViewModel.orderList.observe(viewLifecycleOwner, {
-                if(pageViewModel.isCompleted.value == true) {
+            orderListViewModel.orderList.observe(viewLifecycleOwner, {
+                if(orderListViewModel.isCompleted.value == true) {
                     _binding?.orderListRv?.adapter = CompletedOrderListAdapter(layoutInflater, it,
                         this@OrderListFragment, R.layout.completed_order_list_item)
                 } else {

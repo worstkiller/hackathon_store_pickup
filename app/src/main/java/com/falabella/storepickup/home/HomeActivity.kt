@@ -33,8 +33,8 @@ class HomeActivity : AppCompatActivity() {
         tabs.setupWithViewPager(viewPager)
         tabs.getTabAt(0)?.let {
             val tabView = LayoutInflater.from(this).inflate(R.layout.home_tab_item, null)
-            (tabView.findViewById<ImageView>(R.id.tabIconIv) as ImageView).setImageDrawable((ContextCompat.getDrawable(this, R.drawable.ic_pending)))
-            (tabView.findViewById<TextView>(R.id.tabTitleTv) as TextView).text = OrderConstants.UPCOMING
+            (tabView.findViewById(R.id.tabIconIv) as ImageView).setImageDrawable((ContextCompat.getDrawable(this, R.drawable.ic_pending)))
+            (tabView.findViewById(R.id.tabTitleTv) as TextView).text = OrderConstants.UPCOMING
             it.setCustomView(tabView)
         }
         tabs.getTabAt(1)?.let {
