@@ -29,7 +29,7 @@ class CompletedOrderListAdapter(
         val storeAppointmentModel = list[position]
         val orderId = "#$position$position$position$position"
         holder.orderIdTv.text = orderId
-        holder.productsSizeTv.text = (storeAppointmentModel.images?.size ?: 1).toString()
+        holder.productsSizeTv.text = (storeAppointmentModel.products?.size ?: 1).toString()
         holder.customerNameTv.text = storeAppointmentModel.customerName
         holder.itemView.setOnClickListener {
             clickListener?.onOrderClicked(orderId, storeAppointmentModel)
