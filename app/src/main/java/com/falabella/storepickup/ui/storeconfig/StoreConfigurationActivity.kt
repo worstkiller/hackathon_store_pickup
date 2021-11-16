@@ -7,10 +7,12 @@ import android.widget.DatePicker
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.falabella.storepickup.R
 import com.falabella.storepickup.databinding.ActivityStoreConfigurationBinding
+import com.falabella.storepickup.model.StoreConfigurationModel
 import com.falabella.storepickup.model.StoreSlots
 import com.falabella.storepickup.utils.UiUtils.isVisible
 import java.text.DateFormat
@@ -39,11 +41,26 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
             it.setOnDateSetListener(this@StoreConfigurationActivity)
         }
         adaper = StoreAdapter()
-        setUpStoreConfig()
+        setListener()
+        observeData()
     }
 
-    private fun setUpStoreConfig() {
-        viewModel.getDummyData().apply {
+    private fun observeData() {
+        viewModel.selectedStoreConfig.observe(this) {
+            if (it != null) {
+                setUpStoreConfig(it)
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.getAllStores()
+        viewModel.getDummyData()
+    }
+
+    private fun setUpStoreConfig(storeConfigurationModel: StoreConfigurationModel?) {
+        storeConfigurationModel?.apply {
             viewModel.selectedStore
             binding.tvStoreName.text = storeName
             binding.tvNoOfCustomerCount.text = customersByDefault.toString()
@@ -55,8 +72,14 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
             viewModel.selectedStore = this
             validateButton()
         }
+    }
 
+    private fun setListener() {
         with(binding) {
+
+            tvStoreName.setOnClickListener {
+                showDialog()
+            }
 
             rvSlots.apply {
                 setHasFixedSize(true)
@@ -122,7 +145,7 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
         }
     }
 
-    private fun validateButton(){
+    private fun validateButton() {
         binding.btnUpdateStore.isEnabled = isValid()
     }
 
@@ -197,6 +220,20 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
                 viewModel.selectedStore?.customersByDefault == 0
                 ||
                 viewModel.selectedStore?.storeSlots?.isEmpty() ?: false)
+    }
+
+    fun showDialog() {
+        // setup the alert builder
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.selecet_store))
+        val animals = arrayOf("horse", "cow", "camel", "sheep", "goat")
+        builder.setItems(animals) { dialog, which ->
+            when (which) {
+
+            }
+        }
+        val dialog = builder.create()
+        dialog.show()
     }
 
 }

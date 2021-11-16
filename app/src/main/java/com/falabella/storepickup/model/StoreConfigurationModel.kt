@@ -15,7 +15,15 @@ data class StoreConfigurationModel(
     var customersByDefault: Int,
     var slotRange: Int,
     var storeSlots: List<StoreSlots>
-)
+) {
+
+    constructor() : this("", "", "", "", "", 0, 0, 0, 0, 0, emptyList())
+
+    override fun toString(): String {
+        return storeName
+    }
+
+}
 
 data class StoreSlots(
     val id: Long,
@@ -24,4 +32,6 @@ data class StoreSlots(
     val endDate: String,
     val enabled: Boolean,
     val noOfCustomers: Int,
-)
+) {
+    constructor() : this(0, "", "", "", false, 0)
+}

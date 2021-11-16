@@ -24,4 +24,13 @@ class StoreFirebaseManager {
             }
     }
 
+    fun getAllStores(callback: (List<StoreConfigurationModel>) -> Unit) {
+        db.collection(NODE_STORE).get().addOnSuccessListener { result ->
+            val dat = result?.toObjects(StoreConfigurationModel::class.java)
+            callback(dat ?: emptyList())
+        }.addOnFailureListener { exception ->
+            callback(emptyList())
+        }
+    }
+
 }
