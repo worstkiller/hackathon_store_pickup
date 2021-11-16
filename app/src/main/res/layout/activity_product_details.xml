@@ -6,61 +6,38 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <ImageView
+        android:id="@+id/ivTopCover"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#00CACA"
-        android:elevation="10dp"
+        android:layout_height="150dp"
+        android:foreground="@color/color_overlay"
+        android:scaleType="centerCrop"
+        android:src="@drawable/shopping"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="m" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/store"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvOrderNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/open_sans"
-                android:text="Order Number"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/tvDeliveryStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="@font/open_sans"
-                android:text="Delivered"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.appcompat.widget.Toolbar>
+    <ImageView
+        android:id="@+id/ivBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="-30dp"
+        android:background="@drawable/top_rounded"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toBottomOf="@id/ivTopCover">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -71,146 +48,155 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/open_sans"
-                android:text="Información al cliente"
+                android:layout_marginTop="20dp"
+                android:alpha=".90"
+                android:fontFamily="sans-serif-medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_goneMarginTop="20dp" />
+                app:layout_goneMarginTop="20dp"
+                tools:text="#20416355" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/customerCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:elevation="5dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/customerInfoTitle">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
-
-                    <TextView
-                        android:id="@+id/customerIdLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:fontFamily="@font/open_sans"
-                        android:text="Identificación del cliente"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/customerId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:fontFamily="@font/open_sans"
-                        android:text="101010"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        app:layout_constraintStart_toEndOf="@id/customerIdLabel"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/customerNameLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/open_sans"
-                        android:text="Nombre del cliente:"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/customerIdLabel" />
-
-                    <TextView
-                        android:id="@+id/customerName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/open_sans"
-                        android:text="Shruti"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        app:layout_constraintStart_toStartOf="@id/customerId"
-                        app:layout_constraintTop_toBottomOf="@id/customerIdLabel" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/ivDetails"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="22dp"
+                android:src="@drawable/list"
+                app:layout_constraintStart_toStartOf="@id/customerInfoTitle"
+                app:layout_constraintTop_toBottomOf="@id/customerInfoTitle" />
 
             <TextView
-                android:id="@+id/productTitle"
+                android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/open_sans"
-                android:text="Productos"
+                android:layout_marginEnd="16dp"
+                android:alpha=".8"
+                android:fontFamily="sans-serif-medium"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/customerCard"
-                app:layout_goneMarginTop="20dp" />
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/customerInfoTitle"
+                app:layout_constraintEnd_toEndOf="@id/clDataConainer"
+                app:layout_constraintTop_toTopOf="@id/customerInfoTitle"
+                tools:text="02/12/21" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:elevation="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/productTitle">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvProductsList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:layout_marginTop="20dp"
-                    android:scrollbars="vertical"
-                    tools:itemCount="3"
-                    tools:listitem="@layout/layout_product_item" />
-            </androidx.cardview.widget.CardView>
-
-            <com.ncorti.slidetoact.SlideToActView
-                android:id="@+id/btnMarkAsDelivered"
+            <TextView
+                android:id="@+id/tvDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:elevation="6dp"
-                app:animation_duration="250"
-                app:area_margin="4dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginStart="8dp"
+                android:alpha=".8"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/detalles"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivDetails"
+                app:layout_constraintStart_toEndOf="@id/ivDetails"
+                app:layout_constraintTop_toTopOf="@id/ivDetails" />
+
+            <TextView
+                android:id="@+id/tvOrderTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/nombre_del_cliente"
+                android:textColor="@color/teal_700"
+                android:textSize="20sp"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDetails"
+                app:layout_constraintEnd_toEndOf="@+id/clDataConainer"
+                app:layout_constraintTop_toTopOf="@id/tvDetails"
+                tools:text="$2.390" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clDataConainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/round_box"
+                android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cvList"
-                app:layout_constraintBottom_toTopOf="@id/view"
-                app:outer_color="#00CACA"
-                app:slider_height="60dp"
-                app:slider_locked="false"
-                app:text="Marcar Como Entregado"
-                app:text_size="12sp" />
+                app:layout_constraintTop_toBottomOf="@+id/ivDetails">
 
-            <View
-                android:id="@+id/view"
+                <TextView
+                    android:id="@+id/customerIdLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:alpha=".8"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/id_de_documento"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/customerNameLabel"
+                    tools:text="ID de documento: 1235550" />
+
+                <TextView
+                    android:id="@+id/customerNameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha=".8"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/nombre_del_cliente"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Nombre del cliente: Shruti" />
+
+                <TextView
+                    android:id="@+id/tvTimeSlot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:alpha=".8"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/nombre_del_cliente"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/customerIdLabel"
+                    tools:text="9:30 am to 10:10 am" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvProductsList"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                app:layout_constraintTop_toBottomOf="@id/btnMarkAsDelivered"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="20dp"
+                android:scrollbars="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clDataConainer"
+                tools:itemCount="3"
+                tools:listitem="@layout/layout_product_item" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
+
+    <com.ncorti.slidetoact.SlideToActView
+        android:id="@+id/btnMarkAsDelivered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:elevation="6dp"
+        app:animation_duration="250"
+        app:area_margin="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:outer_color="@color/purple_500"
+        app:slider_height="60dp"
+        app:slider_locked="false"
+        app:text="Marcar Como Entregado"
+        app:text_size="12sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
