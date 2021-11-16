@@ -3,7 +3,6 @@ package com.falabella.storepickup.productdetails
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.falabella.storepickup.R
 import com.falabella.storepickup.adapter.ProductListAdapter
@@ -11,7 +10,6 @@ import com.falabella.storepickup.databinding.ActivityProductDetailsBinding
 import com.falabella.storepickup.model.Product
 import com.ncorti.slidetoact.SlideToActView
 import com.falabella.storepickup.barcode.BarcodeActivity
-import com.falabella.storepickup.barcode.ScanAlertDialog
 
 class ProductDetailsActivity : AppCompatActivity() {
 
@@ -30,7 +28,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     }
 
     private fun setUpMainView() {
-        val dummyData = listOf(Product("https://apod.nasa.gov/apod/image/1912/M94_Hubble_960.jpg", 10.0F, 2))
+        val dummyData = listOf(Product("10", "nachos", "https://apod.nasa.gov/apod/image/1912/M94_Hubble_960.jpg", 10.0F, 2))
 //        val dummyData = StoreAppointmentModel(
 //            "1234", "12", "10:00", "18:00", "12345", "ABC123", "2", "$10", false,
 //            listOf(

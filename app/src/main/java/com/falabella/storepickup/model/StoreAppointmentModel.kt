@@ -14,7 +14,7 @@ data class StoreAppointmentModel(
     val endTime: Long = 0,
     val orderNo: String? = null,
     val customerId: String? = null,
-    val range: String? = null,
+    val range: Int = 0,
     val orderPrice: String? = null,
     val slotId: String? = null,
     val documentNo: String? = null,
@@ -35,7 +35,7 @@ data class StoreAppointmentModel(
         parcel.readLong(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString(),
+        parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -62,7 +62,7 @@ data class StoreAppointmentModel(
         parcel.writeLong(endTime)
         parcel.writeString(orderNo)
         parcel.writeString(customerId)
-        parcel.writeString(range)
+        parcel.writeInt(range)
         parcel.writeString(orderPrice)
         parcel.writeString(slotId)
         parcel.writeString(documentNo)
@@ -91,9 +91,16 @@ data class StoreAppointmentModel(
 
 }
 
-data class Product(val name: String?, val image: String?, val price: Float, val quantity: Int) :
+data class Product(
+    var id: String? = null,
+    var name: String? = null,
+    val image: String? = null,
+    val price: Float = 0f,
+    val quantity: Int = 1
+) :
     Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readFloat(),
@@ -101,6 +108,7 @@ data class Product(val name: String?, val image: String?, val price: Float, val 
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(id)
         parcel.writeString(name)
         parcel.writeString(image)
         parcel.writeFloat(price)
@@ -120,6 +128,4 @@ data class Product(val name: String?, val image: String?, val price: Float, val 
             return arrayOfNulls(size)
         }
     }
-
-
 }

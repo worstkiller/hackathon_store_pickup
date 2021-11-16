@@ -44,7 +44,7 @@ class OrderListFragment : Fragment(), ItemClickListener {
 
         context?.apply {
             orderListViewModel.orderList.observe(viewLifecycleOwner, {
-                if(orderListViewModel.isCompleted.value == true) {
+                if(orderListViewModel.isCompleted) {
                     _binding?.orderListRv?.adapter = CompletedOrderListAdapter(layoutInflater, it, this@OrderListFragment, R.layout.completed_order_list_item)
                 } else {
                     _binding?.orderListRv?.adapter = UpcomingOrderListAdapter(layoutInflater, it, this@OrderListFragment, R.layout.upcoming_order_list_item)

@@ -26,13 +26,12 @@ class UpcomingOrderListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val storeAppointmentModel = list[position]
-        val orderId = "#$position$position$position$position"
-        holder.orderIdTv.text = orderId
+        holder.orderIdTv.text = storeAppointmentModel.orderNo
         holder.productsSizeTv.text = (storeAppointmentModel.products?.size ?: 1).toString()
         holder.customerNameTv.text = storeAppointmentModel.customerName
         holder.timeTv.text = storeAppointmentModel.startTimeSlot
         holder.itemView.setOnClickListener {
-            clickListener?.onOrderClicked(orderId, storeAppointmentModel)
+            clickListener?.onOrderClicked(storeAppointmentModel.orderNo.orEmpty(), storeAppointmentModel)
         }
     }
 

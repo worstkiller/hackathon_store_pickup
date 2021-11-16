@@ -43,7 +43,7 @@ object UiUtils {
                 }
                 return SectionInfo(
                     title = storeAppointmentModel.startDate.orEmpty(),
-                    subTitle = "${orderList.count { storeAppointmentModel.startDate == it.startDate}} Products",
+                    subTitle = "${orderList.count { storeAppointmentModel.startDate == it.startDate}} " + context.getString(R.string.appointments),
                     dotDrawable = AppCompatResources.getDrawable(context, dot)
                 )
             }

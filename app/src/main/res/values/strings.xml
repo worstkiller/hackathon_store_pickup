@@ -11,4 +11,5 @@
     <string name="success_store_add">Tienda actualizada correctamente</string>
     <string name="store_update_failure">algo salió mal</string>
     <string name="selecet_store">Elige una tienda</string>
+    <string name="appointments">Equipo</string>
 </resources>
