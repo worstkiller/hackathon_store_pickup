@@ -30,7 +30,7 @@ class OrderListFragment : Fragment(), ItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         orderListViewModel = ViewModelProvider(this).get(OrderListViewModel::class.java).apply {
-            setIsCompleted(arguments?.getBoolean(ARG_SECTION_NUMBER) ?: false)
+            setIsCompleted(arguments?.getBoolean(BundleKeys.KEY_IS_COMPLETED) ?: false)
         }
     }
 
@@ -45,8 +45,7 @@ class OrderListFragment : Fragment(), ItemClickListener {
         context?.apply {
             orderListViewModel.orderList.observe(viewLifecycleOwner, {
                 if(orderListViewModel.isCompleted.value == true) {
-                    _binding?.orderListRv?.adapter = CompletedOrderListAdapter(layoutInflater, it,
-                        this@OrderListFragment, R.layout.completed_order_list_item)
+                    _binding?.orderListRv?.adapter = CompletedOrderListAdapter(layoutInflater, it, this@OrderListFragment, R.layout.completed_order_list_item)
                 } else {
                     _binding?.orderListRv?.adapter = UpcomingOrderListAdapter(layoutInflater, it, this@OrderListFragment, R.layout.upcoming_order_list_item)
                 }
@@ -59,12 +58,6 @@ class OrderListFragment : Fragment(), ItemClickListener {
     companion object {
 
         /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private const val ARG_SECTION_NUMBER = "section_number"
-
-        /**
          * Returns a new instance of this fragment for the given section
          * number.
          */
@@ -72,7 +65,7 @@ class OrderListFragment : Fragment(), ItemClickListener {
         fun newInstance(sectionNumber: Int): OrderListFragment {
             return OrderListFragment().apply {
                 arguments = Bundle().apply {
-                    putBoolean(ARG_SECTION_NUMBER, sectionNumber/2 == 1)
+                    putBoolean(BundleKeys.KEY_IS_COMPLETED, sectionNumber / 2 == 1)
                 }
             }
         }
