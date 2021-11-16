@@ -30,6 +30,7 @@ class UpcomingOrderListAdapter(
         holder.orderIdTv.text = orderId
         holder.productsSizeTv.text = (storeAppointmentModel.products?.size ?: 1).toString()
         holder.customerNameTv.text = storeAppointmentModel.customerName
+        holder.timeTv.text = storeAppointmentModel.startTimeSlot
         holder.itemView.setOnClickListener {
             clickListener?.onOrderClicked(orderId, storeAppointmentModel)
         }
@@ -41,6 +42,7 @@ class UpcomingOrderListAdapter(
         val orderIdTv: TextView = view.findViewById<View>(R.id.orderIdTv) as TextView
         val productsSizeTv: TextView = view.findViewById<View>(R.id.productsSizeTv) as TextView
         val customerNameTv: TextView = view.findViewById<View>(R.id.customerNameTv) as TextView
+        val timeTv: TextView = view.findViewById<View>(R.id.timeTv) as TextView
     }
 
     interface ItemClickListener {

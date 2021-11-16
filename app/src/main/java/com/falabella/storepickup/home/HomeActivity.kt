@@ -8,13 +8,10 @@ import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import com.falabella.storepickup.R
 import com.falabella.storepickup.databinding.ActivityHomeBinding
-import android.view.Menu
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.falabella.storepickup.ui.storeconfig.StoreConfigurationActivity
-import com.falabella.storepickup.utils.OrderConstants
 
 class HomeActivity : AppCompatActivity() {
 
@@ -34,13 +31,13 @@ class HomeActivity : AppCompatActivity() {
         tabs.getTabAt(0)?.let {
             val tabView = LayoutInflater.from(this).inflate(R.layout.home_tab_item, null)
             (tabView.findViewById(R.id.tabIconIv) as ImageView).setImageDrawable((ContextCompat.getDrawable(this, R.drawable.ic_pending)))
-            (tabView.findViewById(R.id.tabTitleTv) as TextView).text = OrderConstants.UPCOMING
+            (tabView.findViewById(R.id.tabTitleTv) as TextView).text = getString(R.string.tab_text_1)
             it.setCustomView(tabView)
         }
         tabs.getTabAt(1)?.let {
             val tabView = LayoutInflater.from(this).inflate(R.layout.home_tab_item, null)
-            (tabView.findViewById<ImageView>(R.id.tabIconIv) as ImageView).setImageDrawable((ContextCompat.getDrawable(this, R.drawable.ic_completed)))
-            (tabView.findViewById<TextView>(R.id.tabTitleTv) as TextView).text = OrderConstants.COMPLETED
+            (tabView.findViewById(R.id.tabIconIv) as ImageView).setImageDrawable((ContextCompat.getDrawable(this, R.drawable.ic_completed)))
+            (tabView.findViewById(R.id.tabTitleTv) as TextView).text = getString(R.string.tab_text_2)
             it.setCustomView(tabView)
         }
         //click listener
