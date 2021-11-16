@@ -10,8 +10,14 @@ data class StoreAppointmentModel(
     val range: String,
     val orderPrice: String,
     val isCompleted: Boolean,
-    val images: List<String>,
+    val products: List<Product>,
     val slotId: String,
     val customerName: String,
     val documentNo: String
+)
+
+data class Product(
+    val name: String,
+    val imageUrl: String,
+    val price: String
 )

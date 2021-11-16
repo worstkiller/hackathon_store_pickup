@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+//apply from: rootProject.file('gradle/static-analysis.gradle')
+
+dependencies {
+//    application project(':app')
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation libraries.app.firebaseMlVision
+//    implementation libraries.app.firbaseCore
+    //implementation 'com.google.firebase:firebase-ml-vision-image-label-model:17.0.2'
+    //implementation 'com.google.firebase:firebase-ml-vision-face-model:17.0.2'
+    implementation 'com.google.firebase:firebase-ml-model-interpreter:16.2.3'
+    implementation 'com.google.firebase:firebase-ml-vision:18.0.1'
+//    implementation('com.google.firebase:firebase-perf:16.2.3') {
+//        exclude group: 'org.aspectj'
+//    }
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.32"
+}

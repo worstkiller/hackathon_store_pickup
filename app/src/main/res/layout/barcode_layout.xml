@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <FrameLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/barcode_toolbar"
+        android:id="@+id/scannerfragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+    <View
+        app:layout_constraintBottom_toTopOf="@id/barcode_center_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#CC2f3143"/>
+    <View
+        android:background="@drawable/barcode_scanner_background"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:id="@+id/barcode_center_img"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"/>
+    <View
+        android:layout_marginTop="2.5dp"
+        app:layout_constraintBottom_toTopOf="@id/barcode_center_img"
+        app:layout_constraintTop_toBottomOf="@id/barcode_center_img"
+        app:layout_constraintRight_toLeftOf="@id/barcode_center_img"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+        android:layout_marginBottom="1dp"
+
+        android:background="#CC2f3143"/>
+
+    <View
+        app:layout_constraintBottom_toTopOf="@id/barcode_center_img"
+        app:layout_constraintTop_toBottomOf="@id/barcode_center_img"
+        app:layout_constraintLeft_toRightOf="@id/barcode_center_img"
+        android:layout_width="wrap_content"
+        android:layout_height="190dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:background="#CC2f3143"/>
+    <View
+        app:layout_constraintTop_toBottomOf="@id/barcode_center_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#CC2f3143"/>
+    <TextView
+        android:layout_marginTop="13dp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/barcode_center_img"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:text="Enfocar el código de barras para escanear"
+        android:layout_height="wrap_content"/>
+    <androidx.appcompat.widget.Toolbar
+        android:background="@color/white"
+        android:id="@+id/barcode_toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:clickable="true"
+            android:id="@+id/close_barcode_img"
+            app:srcCompat="@drawable/ic_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:text="Escanear código de barras"
+            android:gravity="start|center"
+            android:paddingStart="21dp"
+            android:paddingEnd="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.appcompat.widget.Toolbar>
+</androidx.constraintlayout.widget.ConstraintLayout>
