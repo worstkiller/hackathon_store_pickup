@@ -57,12 +57,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
-                        android:text="Tottus.com"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Tottus.com" />
 
                     <ImageView
                         android:id="@+id/ivDropDown"
@@ -195,12 +195,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:gravity="center_vertical"
-                    android:text="09/11/2021"
                     android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/ivCalIcon"
-                    app:layout_constraintTop_toBottomOf="@id/ivCalIcon" />
+                    app:layout_constraintTop_toBottomOf="@id/ivCalIcon"
+                    tools:text="09/11/2021" />
 
                 <View
                     android:id="@+id/dividerRange"
@@ -239,6 +239,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:max="10"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias=".0"
                     app:layout_constraintStart_toEndOf="@id/ivRangeIcon"
@@ -251,13 +252,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:gravity="center_vertical"
-                    android:text="30 minutos"
                     android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/rangeSelector"
-                    app:layout_constraintTop_toBottomOf="@id/ivRangeIcon" />
+                    app:layout_constraintTop_toBottomOf="@id/ivRangeIcon"
+                    tools:text="30 minutos" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -269,7 +270,7 @@
             android:layout_margin="16dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
-            app:layout_constraintBottom_toBottomOf="parentø"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cvDate">
@@ -285,9 +286,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:spanCount="4"
                     tools:listitem="@layout/item_slot_selection"
-                    tools:orientation="horizontal" />
+                    tools:orientation="horizontal"
+                    tools:spanCount="4" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

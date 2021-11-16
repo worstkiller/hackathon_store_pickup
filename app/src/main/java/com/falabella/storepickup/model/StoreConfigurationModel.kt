@@ -9,12 +9,12 @@ data class StoreConfigurationModel(
     val directions: String,
     val lattitude: String,
     val longitude: String,
+    var date: Long,
     val storeStartTime: String,
     val storeEndTime: String,
-    val customersByDefault: Int,
-    val startDayOfWeek: String,
-    val endDayOfWeek: String,
-    val storeSlots: List<StoreSlots>
+    var customersByDefault: Int,
+    var slotRange: String,
+    var storeSlots: List<StoreSlots>
 )
 
 data class StoreSlots(
