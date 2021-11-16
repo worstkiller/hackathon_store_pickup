@@ -8,32 +8,43 @@ import com.barcodescanner.ScanResult
 import com.barcodescanner.ScanResultListener
 import com.barcodescanner.ScannerFragment
 import com.falabella.storepickup.R
+import com.falabella.storepickup.model.StoreAppointmentModel
+import com.falabella.storepickup.utils.OrderConstants
+import com.falabella.storepickup.utils.ProgressDialog
 
 class BarcodeActivity : AppCompatActivity(), ScanResultListener {
 
+    lateinit var viewModel: BarcodeViewModel
+    lateinit var progress: ProgressDialog
+    var bundleData: StoreAppointmentModel? = StoreAppointmentModel()
+
     override fun onScanSuccess(scanResult: ScanResult) {
-        finish()
-        val bundle = Bundle()
-        bundle.putString("productId", scanResult.result)
-        bundle.putBoolean("isFromScanner", true)
+        // if (bundleData.appointmentId == scanResult.result.appointmentId) {
         updateFirebaseDB()
-        showDeliveryStatusDialog(true)
-        Toast.makeText(this, "Scan successful", Toast.LENGTH_LONG).show()
+        //} else {
+      //  showDeliveryStatusDialog(false)
+    //}
     }
 
     override fun onScanFailed(reason: String) {
         Toast.makeText(this, "" + reason, Toast.LENGTH_SHORT).show()
-        showDeliveryStatusDialog(false)
-        finish()
+        Toast.makeText(
+            this@BarcodeActivity,
+            getString(R.string.please_scan_again),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.barcode_layout)
+        viewModel = defaultViewModelProviderFactory.create(BarcodeViewModel::class.java)
         val closeBarcodeImage = findViewById<ImageView>(R.id.close_barcode_img)
         closeBarcodeImage.setOnClickListener {
             finish()
         }
+        progress = ProgressDialog(this)
+        bundleData = intent.getParcelableExtra<StoreAppointmentModel>(OrderConstants.BundleKeys.KEY_ORDER_ITEM)
         addFragment()
     }
 
@@ -49,6 +60,14 @@ class BarcodeActivity : AppCompatActivity(), ScanResultListener {
     }
 
     private fun updateFirebaseDB() {
-
+        progress.show()
+        bundleData?.let { viewModel.updateAppointmentStatus(it) { success ->
+            progress.hide()
+            if(success) {
+                showDeliveryStatusDialog(true)
+            } else {
+                showDeliveryStatusDialog(false)
+            }
+        } }
     }
 }

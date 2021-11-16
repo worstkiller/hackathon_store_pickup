@@ -11,6 +11,7 @@ import com.falabella.storepickup.barcode.BarcodeActivity
 import com.falabella.storepickup.databinding.ActivityProductDetailsBinding
 import com.falabella.storepickup.model.StoreAppointmentModel
 import com.falabella.storepickup.utils.OrderConstants.BundleKeys.KEY_ORDER_ITEM
+import com.falabella.storepickup.utils.UiUtils.isVisible
 import com.ncorti.slidetoact.SlideToActView
 import java.text.DateFormat
 
@@ -19,6 +20,8 @@ class ProductDetailsActivity : AppCompatActivity() {
     lateinit var binding: ActivityProductDetailsBinding
 
     private lateinit var adapter: ProductListAdapter
+
+    var bundleData: StoreAppointmentModel? = StoreAppointmentModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,16 +35,16 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun setUpMainView() {
-        val bundleData = intent.getParcelableExtra<StoreAppointmentModel>(KEY_ORDER_ITEM)
+        bundleData = intent.getParcelableExtra<StoreAppointmentModel>(KEY_ORDER_ITEM)
         //recyclerview
         binding.rvProductsList.layoutManager = LinearLayoutManager(
             this,
             LinearLayoutManager.VERTICAL,
             false
         )
-        adapter = ProductListAdapter(bundleData?.products ?: emptyList())
+        adapter = ProductListAdapter(this, bundleData?.products ?: emptyList())
         binding.rvProductsList.adapter = adapter
-        //oher ui elemens
+        //other ui elemens
         binding.customerInfoTitle.text = "#${bundleData?.orderNo}"
         binding.tvDate.text = DateFormat.getDateInstance().format(bundleData?.startTime)
         binding.tvOrderTotal.text = bundleData?.orderPrice
@@ -49,6 +52,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.customerNameLabel.text =
             "${binding.customerNameLabel.text}: ${bundleData?.customerName}"
         binding.tvTimeSlot.text = bundleData?.range.toString()
+        bundleData?.let { binding.btnMarkAsDelivered.isVisible(!it.isCompleted) }
+        bundleData?.let { binding.tvDeliveryComplete.isVisible(it.isCompleted) }
     }
 
     override fun onResume() {
@@ -61,6 +66,9 @@ class ProductDetailsActivity : AppCompatActivity() {
             SlideToActView.OnSlideCompleteListener {
             override fun onSlideComplete(view: SlideToActView) {
                 val intent = Intent(this@ProductDetailsActivity, BarcodeActivity::class.java)
+                intent.putExtras(Bundle().apply {
+                    putParcelable(KEY_ORDER_ITEM, bundleData)
+                })
                 startActivity(intent)
             }
         }
