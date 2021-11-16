@@ -1,6 +1,7 @@
 package com.falabella.storepickup.utils
 
 import android.content.Context
+import android.content.res.Resources
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import com.falabella.storepickup.R
@@ -52,5 +53,9 @@ object UiUtils {
         } else {
             visibility = View.GONE
         }
+    }
+
+    fun Int.doToPx(): Int {
+        return this * Resources.getSystem().displayMetrics.density.toInt()
     }
 }

@@ -16,20 +16,6 @@ class StoreConfigurationViewModel : ViewModel() {
 
     var selectedStoreConfig = MutableLiveData<StoreConfigurationModel>()
 
-    fun getDummyData(): StoreConfigurationModel {
-        return StoreConfigurationModel(
-            "101",
-            "Falabella Lyon",
-            "Nueva de Lyon 064, Providencia, Región Metropolitana",
-            "-33.421147", "-70.610579", 0,
-            9,
-            23,
-            3, 30, arrayListOf(),
-        ).also {
-            selectedStoreConfig.value = it
-        }
-    }
-
     fun updateData(storeConfigurationModel: StoreConfigurationModel, callback: (Boolean) -> Unit) {
         firebaseManager.updateStore(storeConfigurationModel, callback)
     }
@@ -39,6 +25,10 @@ class StoreConfigurationViewModel : ViewModel() {
             listOfStores.value = stores
             selectedStoreConfig.value = stores.firstOrNull()
         }
+    }
+
+    fun updateSelectedStore(which: Int) {
+        selectedStoreConfig.value = listOfStores.value?.get(which)
     }
 
 }
