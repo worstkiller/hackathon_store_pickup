@@ -9,7 +9,7 @@ data class StoreConfigurationModel(
     val directions: String,
     val lattitude: String,
     val longitude: String,
-    var date: Long,
+    var date: Long = 0,
     val storeStartTime: Int,
     val storeEndTime: Int,
     var customersByDefault: Int,

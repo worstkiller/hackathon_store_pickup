@@ -5,9 +5,11 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.DatePicker
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.falabella.storepickup.R
 import com.falabella.storepickup.databinding.ActivityStoreConfigurationBinding
 import com.falabella.storepickup.model.StoreSlots
 import com.falabella.storepickup.utils.UiUtils.isVisible
@@ -46,10 +48,12 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
             binding.tvStoreName.text = storeName
             binding.tvNoOfCustomerCount.text = customersByDefault.toString()
             binding.tvDateSelected.text =
-                DateFormat.getDateInstance().format(System.currentTimeMillis())
+                DateFormat.getDateInstance().format(Date().time)
+            adaper.updateData(storeSlots)
             checkVisibility(storeSlots.isNotEmpty())
             viewModel.selectedStore?.date = Date().time
             viewModel.selectedStore = this
+            validateButton()
         }
 
         with(binding) {
@@ -65,6 +69,7 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
                 val count = "$no"
                 tvNoOfCustomerCount.text = count
                 viewModel.selectedStore?.customersByDefault = no
+                validateButton()
             }
 
             ivRemoveButton.setOnClickListener {
@@ -74,6 +79,7 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
                         "${count.dec()}"
                 }
                 viewModel.selectedStore?.customersByDefault = count
+                validateButton()
             }
 
             tvDateSelected.setOnClickListener {
@@ -86,13 +92,38 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
                     viewModel.selectedStore?.slotRange = range
                     tvRangeSelected.text = "$range: min"
                     inflateSlots()
+                    validateButton()
                 }
 
                 override fun onStartTrackingTouch(p0: SeekBar?) {}
 
                 override fun onStopTrackingTouch(p0: SeekBar?) {}
             })
+
+            btnUpdateStore.setOnClickListener {
+                viewModel.selectedStore?.let { it1 ->
+                    viewModel.updateData(it1) { success ->
+                        if (success) {
+                            Toast.makeText(
+                                this@StoreConfigurationActivity,
+                                getString(R.string.success_store_add),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                this@StoreConfigurationActivity,
+                                getString(R.string.store_update_failure),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
         }
+    }
+
+    private fun validateButton(){
+        binding.btnUpdateStore.isEnabled = isValid()
     }
 
     private fun checkVisibility(isVisible: Boolean) {
@@ -142,6 +173,7 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
         adaper.updateData(range)
         viewModel.selectedStore?.storeSlots = range
         checkVisibility(range.isNotEmpty())
+        validateButton()
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
@@ -152,6 +184,19 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
         cal.time
         binding.tvDateSelected.text = DateFormat.getDateInstance().format(Date(cal.time.time))
         viewModel.selectedStore?.date = cal.time.time
+        validateButton()
+    }
+
+    private fun isValid(): Boolean {
+        return !(viewModel.selectedStore == null
+                ||
+                viewModel.selectedStore?.slotRange == 0
+                ||
+                viewModel.selectedStore?.date == 0L
+                ||
+                viewModel.selectedStore?.customersByDefault == 0
+                ||
+                viewModel.selectedStore?.storeSlots?.isEmpty() ?: false)
     }
 
 }

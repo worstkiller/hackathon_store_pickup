@@ -8,4 +8,7 @@
     <string name="por_favor_fecha_para_los_espacios">Por favor, fecha para los espacios</string>
     <string name="range_selecor">Elija el rango de ranuras</string>
     <string name="no_se_encontraron_espacios">no se encontraron espacios</string>
+    <string name="actualizar_tienda">Actualizar tienda</string>
+    <string name="success_store_add">Tienda actualizada correctamente</string>
+    <string name="store_update_failure">algo salió mal</string>
 </resources>
