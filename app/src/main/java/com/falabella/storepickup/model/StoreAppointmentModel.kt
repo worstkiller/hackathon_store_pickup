@@ -27,6 +27,28 @@ data class StoreAppointmentModel(
     var endDate: String? = null,
     var endTimeSlot: String? = null,
 ) : Parcelable {
+
+
+    constructor() : this(
+        "",
+        0L,
+        "",
+        "",
+        0L,
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        arrayListOf(),
+        false,
+        "",
+        "",
+        "",
+        ""
+    )
+
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readLong(),
@@ -49,7 +71,8 @@ data class StoreAppointmentModel(
 
     fun updateTimeValues() {
         startDate = UiUtils.getSimpleDateTimeFormat(startTime)
-        startTimeSlot = UiUtils.getSimpleDateTimeFormat(startTime, OrderConstants.SIMPLE_TIME_FORMAT)
+        startTimeSlot =
+            UiUtils.getSimpleDateTimeFormat(startTime, OrderConstants.SIMPLE_TIME_FORMAT)
         endDate = UiUtils.getSimpleDateTimeFormat(endTime)
         endTimeSlot = UiUtils.getSimpleDateTimeFormat(endTime, OrderConstants.SIMPLE_TIME_FORMAT)
     }
@@ -93,6 +116,9 @@ data class StoreAppointmentModel(
 
 data class Product(val name: String?, val image: String?, val price: Float, val quantity: Int) :
     Parcelable {
+
+    constructor() : this("", "", 0f, 0)
+
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
