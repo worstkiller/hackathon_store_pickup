@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.falabella.storepickup.MainActivity
 import com.falabella.storepickup.R
 import com.falabella.storepickup.databinding.FragmentHomeBinding
 import com.falabella.storepickup.model.StoreAppointmentModel
 import com.falabella.storepickup.orderlist.UpcomingOrderListAdapter.ItemClickListener
+import com.falabella.storepickup.productdetails.ProductDetailsActivity
 import com.falabella.storepickup.utils.OrderConstants.BundleKeys
 import com.falabella.storepickup.utils.UiUtils
 
@@ -44,10 +44,20 @@ class OrderListFragment : Fragment(), ItemClickListener {
 
         context?.apply {
             orderListViewModel.orderList.observe(viewLifecycleOwner, {
-                if(orderListViewModel.isCompleted) {
-                    _binding?.orderListRv?.adapter = CompletedOrderListAdapter(layoutInflater, it, this@OrderListFragment, R.layout.completed_order_list_item)
+                if (orderListViewModel.isCompleted) {
+                    _binding?.orderListRv?.adapter = CompletedOrderListAdapter(
+                        layoutInflater,
+                        it,
+                        this@OrderListFragment,
+                        R.layout.completed_order_list_item
+                    )
                 } else {
-                    _binding?.orderListRv?.adapter = UpcomingOrderListAdapter(layoutInflater, it, this@OrderListFragment, R.layout.upcoming_order_list_item)
+                    _binding?.orderListRv?.adapter = UpcomingOrderListAdapter(
+                        layoutInflater,
+                        it,
+                        this@OrderListFragment,
+                        R.layout.upcoming_order_list_item
+                    )
                 }
                 _binding?.orderListRv?.addItemDecoration(UiUtils.getSectionCallback(it, this))
             })
@@ -77,7 +87,7 @@ class OrderListFragment : Fragment(), ItemClickListener {
     }
 
     override fun onOrderClicked(orderId: String, storeAppointmentModel: StoreAppointmentModel) {
-        val intent = Intent(activity, MainActivity::class.java)
+        val intent = Intent(activity, ProductDetailsActivity::class.java)
         intent.putExtras(Bundle().apply {
             putString(BundleKeys.KEY_ORDER_ID, orderId)
             putParcelable(BundleKeys.KEY_ORDER_ITEM, storeAppointmentModel)
