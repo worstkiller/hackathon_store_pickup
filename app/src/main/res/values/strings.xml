@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Store Pickup</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="tab_text_1">Upcoming</string>
+    <string name="tab_text_2">Completed</string>
     <string name="search">Busca aquí</string>
 </resources>
