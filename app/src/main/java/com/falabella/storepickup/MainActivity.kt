@@ -28,9 +28,5 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, StoreConfigurationActivity::class.java)
             startActivity(intent)
         }
-        binding.tvHome.setOnClickListener {
-            val intent = Intent(this@MainActivity, ProductDetailsActivity::class.java)
-            startActivity(intent)
-        }
     }
 }
