@@ -8,6 +8,9 @@ import com.falabella.storepickup.R
 import com.falabella.storepickup.model.StoreAppointmentModel
 import com.mortalcombat.stickytimeline.SectionInfo
 import com.mortalcombat.stickytimeline.VerticalSectionItemDecoration
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 object UiUtils {
 
@@ -39,8 +42,8 @@ object UiUtils {
                     else -> R.drawable.ic_solo
                 }
                 return SectionInfo(
-                    title = storeAppointmentModel.startTime.orEmpty(),
-                    subTitle = "${orderList.count { storeAppointmentModel.startTime == it.startTime}} Products",
+                    title = storeAppointmentModel.startDate.orEmpty(),
+                    subTitle = "${orderList.count { storeAppointmentModel.startDate == it.startDate}} Products",
                     dotDrawable = AppCompatResources.getDrawable(context, dot)
                 )
             }
@@ -48,14 +51,33 @@ object UiUtils {
     }
 
     fun View.isVisible(visible: Boolean) {
-        if (visible) {
-            visibility = View.VISIBLE
+        visibility = if (visible) {
+            View.VISIBLE
         } else {
-            visibility = View.GONE
+            View.GONE
         }
     }
 
     fun Int.doToPx(): Int {
         return this * Resources.getSystem().displayMetrics.density.toInt()
+    }
+
+    /**
+     * Return date in specified format.
+     * @param milliSeconds Date in milliseconds
+     * @param dateFormat Date format
+     * @return String representing date in specified format
+     */
+    fun getSimpleDateTimeFormat(
+        milliSeconds: Long,
+        dateFormat: String? = OrderConstants.SIMPLE_DATE_FORMAT
+    ): String? {
+        // Create a DateFormatter object for displaying date in specified format.
+        val formatter = SimpleDateFormat(dateFormat, Locale.getDefault())
+
+        // Create a calendar object that will convert the date and time value in milliseconds to date.
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = milliSeconds
+        return formatter.format(calendar.time)
     }
 }

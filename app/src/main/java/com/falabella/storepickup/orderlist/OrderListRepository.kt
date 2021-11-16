@@ -4,15 +4,14 @@ import com.falabella.storepickup.model.StoreAppointmentModel
 
 class OrderListRepository {
 
-    //solo
     private val mockOrderList: List<StoreAppointmentModel> =
         listOf(
             StoreAppointmentModel(
                 appointmentId = "Solo",
-                startTime = "1995.04",
+                startTime = 1637082468989,
                 customerName = "Lim Chang Jung",
                 storeId = "001",
-                endTime = "1995.06",
+                endTime = 0,
                 orderNo = "000001",
                 customerId = "1",
                 range = "",
@@ -21,14 +20,13 @@ class OrderListRepository {
                 documentNo = "1doc",
                 emptyList(),
                 isCompleted = false
-
             ),
             StoreAppointmentModel(
                 appointmentId = "FIN.K.L",
-                startTime = "1998.05",
+                startTime = 1637082460000,
                 customerName = "Lee Jin",
                 storeId = "002",
-                endTime = "1998.06",
+                endTime = 0,
                 orderNo = "000001",
                 customerId = "1",
                 range = "",
@@ -40,10 +38,10 @@ class OrderListRepository {
             ),
             StoreAppointmentModel(
                 appointmentId = "FIN.K.L",
-                startTime = "1998.05",
+                startTime = 2637082368989,
                 customerName = "Sung Yu Ri",
                 storeId = "002",
-                endTime = "1995.06",
+                endTime = 0,
                 orderNo = "000001",
                 customerId = "1",
                 range = "",
@@ -55,10 +53,10 @@ class OrderListRepository {
             ),
             StoreAppointmentModel(
                 appointmentId = "FIN.K.L",
-                startTime = "1996.06",
+                startTime = 0,
                 customerName = "Oak Joo Hyun",
                 storeId = "003",
-                endTime = "1995.06",
+                endTime = 0,
                 orderNo = "000001",
                 customerId = "1",
                 range = "",
@@ -70,10 +68,10 @@ class OrderListRepository {
             ),
             StoreAppointmentModel(
                 appointmentId = "FIN.K.L",
-                startTime = "1995.05",
+                startTime = 0,
                 customerName = "Lee Hyo Ri",
                 storeId = "001",
-                endTime = "1995.06",
+                endTime = 0,
                 orderNo = "000001",
                 customerId = "1",
                 range = "",
@@ -85,157 +83,144 @@ class OrderListRepository {
             ),
             StoreAppointmentModel(
                 appointmentId = "Solo",
-                startTime = "1999.04",
+                startTime = 0,
+                isCompleted = true,
                 customerName = "Kim Bumsoo"
             ),
             StoreAppointmentModel(
                 appointmentId = "Solo",
-                startTime = "1999.11",
+                startTime = 0,
+                isCompleted = true,
                 customerName = "Park Hyo Shin"
             ),
             StoreAppointmentModel(
                 appointmentId = "Solo",
-                startTime = "1999.11",
+                startTime = 0,
+                isCompleted = true,
                 customerName = "Lee Soo Young"
             ),
             StoreAppointmentModel(
                 appointmentId = "Solo",
-                startTime = "2000.11",
+                startTime = 0,
+                isCompleted = true,
                 customerName = "Sung Si Kyung"
             ),
             StoreAppointmentModel(
                 appointmentId = "Buzz",
-                startTime = "2003.10",
+                startTime = 0,
+                isCompleted = true,
                 customerName = "Kim Yeah"
             ),
             StoreAppointmentModel(
                 appointmentId = "Buzz",
-                startTime = "2003.10",
+                startTime = 0,
+                isCompleted = true,
                 customerName = "Yun Woo Hyun"
             ),
             StoreAppointmentModel(
-                "Buzz",
-                "2003.10",
-                "Sin Jun Ki"
+                appointmentId = "Buzz",
+                startTime = 0,
+                isCompleted = true,
+                customerName = "Sin Jun Ki"
             ),
             StoreAppointmentModel(
-                "Buzz",
-                "2003.10",
-                "Min Kyung Hoon"
+                appointmentId = "Buzz",
+                startTime = 0,
+                isCompleted = true,
+                customerName = "Min Kyung Hoon"
             ),
             StoreAppointmentModel(
-                "Solo",
-                "2006.06",
-                "Yunha"
+                appointmentId = "Solo",
+                startTime = 1637042468983,
+                customerName = "Yunha"
+            ),
+            StoreAppointmentModel(
+                appointmentId = "Girls' Generation",
+                startTime = 1637082468920,
+                isCompleted = true,
+                customerName = "TaeYeon"
+            ),
+            StoreAppointmentModel(
+                appointmentId = "Girls' Generation",
+                startTime = 1637042468983,
+                customerName = "Sunny"
             ),
             StoreAppointmentModel(
                 "Girls' Generation",
-                "2007.08",
-                "TaeYeon"
-            ),
-            StoreAppointmentModel(
-                "Girls' Generation",
-                "2007.08",
-                "Sunny"
-            ),
-            StoreAppointmentModel(
-                "Girls' Generation",
-                "2007.08",
+                1637282468989,
                 "Tiffany"
             ),
             StoreAppointmentModel(
                 "Girls' Generation",
-                "2007.08",
+                0,
                 "HyoYeon"
             ),
             StoreAppointmentModel(
                 "Girls' Generation",
-                "2007.08",
+                0,
                 "YuRi"
             ),
             StoreAppointmentModel(
                 "Girls' Generation",
-                "2007.08",
+                0,
                 "SooYoung"
             ),
             StoreAppointmentModel(
                 "Girls' Generation",
-                "2007.08",
+                0,
                 "YoonA"
             ),
             StoreAppointmentModel(
                 "Girls' Generation",
-                "2007.08",
+                0,
                 "SeoHyun"
             ),
             StoreAppointmentModel(
                 "Wanna One",
-                "2017.08",
+                0,
                 "Kang Daniel"
             ),
             StoreAppointmentModel(
                 "Wanna One",
-                "2017.08",
+                0,
                 "Lai Kuan Lin"
             ),
             StoreAppointmentModel(
                 "Wanna One",
-                "2017.08",
+                0,
                 "Ong Seong Wu"
             ),
             StoreAppointmentModel(
                 "Wanna One",
-                "2017.08",
+                0,
                 "Ha Sung Woon"
             ),
             StoreAppointmentModel(
                 "Wanna One",
-                "2017.08",
+                0,
                 "Yoon Ji Sung"
             ),
             StoreAppointmentModel(
                 "Wanna One",
-                "2017.08",
+                0,
                 "Park Woo Jin"
             ),
             StoreAppointmentModel(
                 "Wanna One",
-                "2017.08",
+                0,
                 "Lee Dae Hwi"
-            ),
-            StoreAppointmentModel(
-                "Wanna One",
-                "2017.08",
-                "Kim Jae Hwan"
-            ),
-            StoreAppointmentModel(
-                "Wanna One",
-                "2017.08",
-                "Bae Jin Young"
-            ),
-            StoreAppointmentModel(
-                "Wanna One",
-                "2017.08",
-                "Hwang Min Hyun"
-            ),
-            StoreAppointmentModel(
-                "Wanna One",
-                "2017.08",
-                "Park Ji Hoon"
-            ),
-            StoreAppointmentModel(
-                "Solo",
-                "2017.11",
-                "Woo Won Jae"
-            ),
-            StoreAppointmentModel(
-                "Solo",
-                "2017.11",
-                "Me Won Jae"
             )
         )
 
-    fun getUpcomingList() = mockOrderList.filter { it.isCompleted.not() }
+    fun getUpcomingList() = with(mockOrderList) {
+        forEach { storeAppointmentModel ->  storeAppointmentModel.updateTimeValues() }
+        sortedBy { it.startTime }
+        filter { it.isCompleted.not() }
+    }
 
-    fun getCompletedList() = mockOrderList.filter { it.isCompleted }
+    fun getCompletedList() = with(mockOrderList) {
+        forEach { storeAppointmentModel ->  storeAppointmentModel.updateTimeValues() }
+        sortedByDescending { it.startTime }
+        filter {  it.isCompleted }
+    }
 }

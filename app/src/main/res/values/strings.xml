@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Store Pickup</string>
-    <string name="title_activity_home">HomeActivity</string>
-    <string name="tab_text_1">Upcoming</string>
-    <string name="tab_text_2">Completed</string>
+    <string name="tab_text_1">Próximo</string>
+    <string name="tab_text_2">Terminado</string>
     <string name="search">Busca aquí</string>
     <string name="no_de_clientes_permitidos">No de clientes permitidos</string>
     <string name="por_favor_fecha_para_los_espacios">Por favor, fecha para los espacios</string>

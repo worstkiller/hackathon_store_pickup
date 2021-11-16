@@ -65,7 +65,10 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
 
     private fun setUpStoreConfig(storeConfigurationModel: StoreConfigurationModel?) {
         storeConfigurationModel?.apply {
-            viewModel.selectedStore
+            binding.tvStoreAddress.text = viewModel.selectedStore?.directions
+            "Espacio: ${viewModel.selectedStore?.storeSlots?.size ?: 0}".also {
+                binding.tvStoreSlots.text = it
+            }
             binding.tvStoreName.text = storeName
             binding.tvNoOfCustomerCount.text = customersByDefault.toString()
             binding.tvDateSelected.text =
@@ -82,6 +85,10 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
         with(binding) {
 
             tvStoreName.setOnClickListener {
+                showDialog()
+            }
+
+            clStoreHolder.setOnClickListener {
                 showDialog()
             }
 
