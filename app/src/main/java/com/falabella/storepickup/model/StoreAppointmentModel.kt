@@ -69,8 +69,10 @@ data class StoreAppointmentModel(
 
 }
 
-data class Product(val image: String?, val price: Float, val quantity: Int) : Parcelable {
+data class Product(val name: String?, val image: String?, val price: Float, val quantity: Int) :
+    Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readFloat(),
         parcel.readInt()
@@ -78,6 +80,7 @@ data class Product(val image: String?, val price: Float, val quantity: Int) : Pa
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(name)
         parcel.writeString(image)
         parcel.writeFloat(price)
         parcel.writeInt(quantity)
@@ -96,5 +99,6 @@ data class Product(val image: String?, val price: Float, val quantity: Int) : Pa
             return arrayOfNulls(size)
         }
     }
+
 
 }
