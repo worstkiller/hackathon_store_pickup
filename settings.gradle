@@ -8,4 +8,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Store Pickup"
 include ':app'
+include ':stickytimeline'
 include ':barcodescanner'

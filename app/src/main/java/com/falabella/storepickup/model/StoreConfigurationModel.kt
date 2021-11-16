@@ -9,19 +9,24 @@ data class StoreConfigurationModel(
     val directions: String,
     val lattitude: String,
     val longitude: String,
-    val storeStartTime: String,
-    val storeEndTime: String,
-    val customersByDefault: Int,
-    val startDayOfWeek: String,
-    val endDayOfWeek: String,
-    val storeSlots: List<StoreSlots>
-)
+    var date: Long = 0,
+    val storeStartTime: Int,
+    val storeEndTime: Int,
+    var customersByDefault: Int,
+    var slotRange: Int,
+    var storeSlots: List<StoreSlots>
+) {
+
+    constructor() : this("", "", "", "", "", 0, 0, 0, 0, 0, emptyList())
+}
 
 data class StoreSlots(
-    val id: Int,
+    val id: Long,
     val range: String,
     val starDate: String,
     val endDate: String,
     val enabled: Boolean,
     val noOfCustomers: Int,
-)
+) {
+    constructor() : this(0, "", "", "", false, 0)
+}
