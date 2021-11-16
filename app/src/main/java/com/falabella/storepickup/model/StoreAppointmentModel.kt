@@ -37,7 +37,7 @@ data class StoreAppointmentModel(
         0L,
         "",
         "",
-        "",
+        0,
         "",
         "",
         "",
@@ -123,7 +123,7 @@ data class Product(
 ) :
     Parcelable {
 
-    constructor() : this("", "", 0f, 0)
+    constructor() : this("", "", "", 0f, 0)
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),

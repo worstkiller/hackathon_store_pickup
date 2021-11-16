@@ -48,7 +48,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.customerIdLabel.text = "${binding.customerIdLabel.text}: ${bundleData?.documentNo}"
         binding.customerNameLabel.text =
             "${binding.customerNameLabel.text}: ${bundleData?.customerName}"
-        binding.tvTimeSlot.text = bundleData?.range
+        binding.tvTimeSlot.text = bundleData?.range.toString()
     }
 
     override fun onResume() {
