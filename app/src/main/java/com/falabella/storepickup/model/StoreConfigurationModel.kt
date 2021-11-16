@@ -18,11 +18,6 @@ data class StoreConfigurationModel(
 ) {
 
     constructor() : this("", "", "", "", "", 0, 0, 0, 0, 0, emptyList())
-
-    override fun toString(): String {
-        return storeName
-    }
-
 }
 
 data class StoreSlots(

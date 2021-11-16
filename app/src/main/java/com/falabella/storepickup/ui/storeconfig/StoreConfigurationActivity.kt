@@ -14,6 +14,7 @@ import com.falabella.storepickup.R
 import com.falabella.storepickup.databinding.ActivityStoreConfigurationBinding
 import com.falabella.storepickup.model.StoreConfigurationModel
 import com.falabella.storepickup.model.StoreSlots
+import com.falabella.storepickup.utils.ProgressDialog
 import com.falabella.storepickup.utils.UiUtils.isVisible
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -29,6 +30,7 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
     lateinit var viewModel: StoreConfigurationViewModel
     lateinit var datePickerDialog: DatePickerDialog
     lateinit var adaper: StoreAdapter
+    lateinit var progress: ProgressDialog
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,12 +43,14 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
             it.setOnDateSetListener(this@StoreConfigurationActivity)
         }
         adaper = StoreAdapter()
+        progress = ProgressDialog(this)
         setListener()
         observeData()
     }
 
     private fun observeData() {
         viewModel.selectedStoreConfig.observe(this) {
+            progress.hide()
             if (it != null) {
                 setUpStoreConfig(it)
             }
@@ -55,8 +59,8 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
 
     override fun onStart() {
         super.onStart()
+        progress.show()
         viewModel.getAllStores()
-        viewModel.getDummyData()
     }
 
     private fun setUpStoreConfig(storeConfigurationModel: StoreConfigurationModel?) {
@@ -124,8 +128,10 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
             })
 
             btnUpdateStore.setOnClickListener {
+                progress.show()
                 viewModel.selectedStore?.let { it1 ->
                     viewModel.updateData(it1) { success ->
+                        progress.hide()
                         if (success) {
                             Toast.makeText(
                                 this@StoreConfigurationActivity,
@@ -222,15 +228,14 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
                 viewModel.selectedStore?.storeSlots?.isEmpty() ?: false)
     }
 
-    fun showDialog() {
+    private fun showDialog() {
         // setup the alert builder
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.selecet_store))
-        val animals = arrayOf("horse", "cow", "camel", "sheep", "goat")
-        builder.setItems(animals) { dialog, which ->
-            when (which) {
-
-            }
+        val stores = viewModel.listOfStores.value?.map { it.storeName }?.toTypedArray()
+        builder.setItems(stores) { dialog, which ->
+            viewModel.updateSelectedStore(which)
+            dialog.dismiss()
         }
         val dialog = builder.create()
         dialog.show()

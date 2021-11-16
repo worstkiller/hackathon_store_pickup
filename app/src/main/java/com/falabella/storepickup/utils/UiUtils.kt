@@ -1,6 +1,7 @@
 package com.falabella.storepickup.utils
 
 import android.content.Context
+import android.content.res.Resources
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import com.falabella.storepickup.R
@@ -20,8 +21,7 @@ object UiUtils {
         return object : VerticalSectionItemDecoration.SectionCallback {
             //In your data, implement a method to determine if this is a section.
             override fun isSection(position: Int): Boolean =
-                orderList[position].startDate.isNullOrBlank().not() &&
-                    orderList[position].startDate != orderList[position - 1].startDate
+                orderList[position].startTime != orderList[position - 1].startTime
 
             //Implement a method that returns a SectionHeader.
             override fun getSectionHeader(position: Int): SectionInfo {
@@ -56,6 +56,10 @@ object UiUtils {
         } else {
             View.GONE
         }
+    }
+
+    fun Int.doToPx(): Int {
+        return this * Resources.getSystem().displayMetrics.density.toInt()
     }
 
     /**
