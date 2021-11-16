@@ -29,11 +29,11 @@ class ProductListAdapter(
         val product = productList[position]
         holder.layoutProductItemBinding.apply {
             ivProductImage.apply {
-                Glide.with(context).load(product.imageUrl).into(this)
+                Glide.with(context).load(product.image).into(this)
                 loadingComplete = true
             }
-            tvProductName.text = product.name
-            tvProductPrice.text = product.price
+            tvProductName.text = product.quantity.toString()
+            tvProductPrice.text = product.price.toString()
         }
     }
 
