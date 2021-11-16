@@ -210,9 +210,9 @@ class VerticalSectionItemDecoration(
         paint.strokeWidth = recyclerViewAttr.sectionLineWidth
         c.drawLines(
                 floatArrayOf(
-                        defaultOffset * 10f,
+                        defaultOffset * 11f,
                         0f,
-                        defaultOffset * 10f,
+                        defaultOffset * 11f,
                         parent.height.toFloat()
                 ), paint
         )

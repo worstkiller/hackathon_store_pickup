@@ -8,59 +8,110 @@ class OrderListRepository {
     private val mockOrderList: List<StoreAppointmentModel> =
         listOf(
             StoreAppointmentModel(
-                "Solo",
-                "1995.04",
-                "Lim Chang Jung"
+                appointmentId = "Solo",
+                startTime = "1995.04",
+                customerName = "Lim Chang Jung",
+                storeId = "001",
+                endTime = "1995.06",
+                orderNo = "000001",
+                customerId = "1",
+                range = "",
+                orderPrice = "200$",
+                slotId = "1234",
+                documentNo = "1doc",
+                listOf("", ""),
+                isCompleted = false
+
             ),
             StoreAppointmentModel(
-                "FIN.K.L",
-                "1998.05",
-                "Lee Jin"
+                appointmentId = "FIN.K.L",
+                startTime = "1998.05",
+                customerName = "Lee Jin",
+                storeId = "002",
+                endTime = "1998.06",
+                orderNo = "000001",
+                customerId = "1",
+                range = "",
+                orderPrice = "200$",
+                slotId = "1235",
+                documentNo = "1doc",
+                listOf("", ""),
+                isCompleted = true
             ),
             StoreAppointmentModel(
-                "FIN.K.L",
-                "1998.05",
-                "Sung Yu Ri"
+                appointmentId = "FIN.K.L",
+                startTime = "1998.05",
+                customerName = "Sung Yu Ri",
+                storeId = "002",
+                endTime = "1995.06",
+                orderNo = "000001",
+                customerId = "1",
+                range = "",
+                orderPrice = "200$",
+                slotId = "1234",
+                documentNo = "1doc",
+                listOf("", ""),
+                isCompleted = true
             ),
             StoreAppointmentModel(
-                "FIN.K.L",
-                "1998.05",
-                "Oak Joo Hyun"
+                appointmentId = "FIN.K.L",
+                startTime = "1996.06",
+                customerName = "Oak Joo Hyun",
+                storeId = "003",
+                endTime = "1995.06",
+                orderNo = "000001",
+                customerId = "1",
+                range = "",
+                orderPrice = "200$",
+                slotId = "1234",
+                documentNo = "1doc",
+                listOf("", ""),
+                isCompleted = true
             ),
             StoreAppointmentModel(
-                "FIN.K.L",
-                "1998.05",
-                "Lee Hyo Ri"
+                appointmentId = "FIN.K.L",
+                startTime = "1995.05",
+                customerName = "Lee Hyo Ri",
+                storeId = "001",
+                endTime = "1995.06",
+                orderNo = "000001",
+                customerId = "1",
+                range = "",
+                orderPrice = "100$",
+                slotId = "1234",
+                documentNo = "5doc",
+                listOf("", ""),
+                isCompleted = true
             ),
             StoreAppointmentModel(
-                "Solo",
-                "1999.04",
-                "Kim Bumsoo"
+                appointmentId = "Solo",
+                startTime = "1999.04",
+                customerName = "Kim Bumsoo"
             ),
             StoreAppointmentModel(
-                "Solo",
-                "1999.11",
-                "Park Hyo Shin"
+                appointmentId = "Solo",
+                startTime = "1999.11",
+                customerName = "Park Hyo Shin"
             ),
             StoreAppointmentModel(
-                "Solo",
-                "1999.11",
-                "Lee Soo Young"
+                appointmentId = "Solo",
+                startTime = "1999.11",
+                customerName = "Lee Soo Young"
             ),
             StoreAppointmentModel(
-                "Solo",
-                "2000.11",
-                "Sung Si Kyung"
+                appointmentId = "Solo",
+                startTime = "2000.11",
+                customerName = "Sung Si Kyung"
             ),
             StoreAppointmentModel(
-                "Buzz",
-                "2003.10",
-                "Kim Yeah"
+                appointmentId = "Buzz",
+                startTime = "2003.10",
+                customerName = "Kim Yeah"
             ),
             StoreAppointmentModel(
-                "Buzz",
-                "2003.10",
-                "Yun Woo Hyun"
+                appointmentId = "Buzz",
+                startTime = "2003.10",
+                customerName = "Yun Woo Hyun"
             ),
             StoreAppointmentModel(
                 "Buzz",
@@ -184,7 +235,7 @@ class OrderListRepository {
             )
         )
 
-    fun getUpcomingList() = mockOrderList.subList(0, 17)
+    fun getUpcomingList() = mockOrderList.filter { it.isCompleted.not() }
 
-    fun getCompletedList() = mockOrderList.subList(18, mockOrderList.size)
+    fun getCompletedList() = mockOrderList.filter { it.isCompleted }
 }

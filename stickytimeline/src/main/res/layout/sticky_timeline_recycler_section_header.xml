@@ -19,11 +19,11 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/list_item_section_title"
-        android:layout_width="64dp"
+        android:layout_width="72dp"
         android:layout_height="0dp"
         android:background="@drawable/date_background"
         android:fontFamily="sans-serif-light"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:textSize="@dimen/title_text_size"
