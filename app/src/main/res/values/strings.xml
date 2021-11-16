@@ -7,4 +7,5 @@
     <string name="no_de_clientes_permitidos">No de clientes permitidos</string>
     <string name="por_favor_fecha_para_los_espacios">Por favor, fecha para los espacios</string>
     <string name="range_selecor">Elija el rango de ranuras</string>
+    <string name="no_se_encontraron_espacios">no se encontraron espacios</string>
 </resources>

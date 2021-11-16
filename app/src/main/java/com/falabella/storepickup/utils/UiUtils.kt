@@ -1,6 +1,7 @@
 package com.falabella.storepickup.utils
 
 import android.content.Context
+import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import com.falabella.storepickup.R
 import com.falabella.storepickup.model.StoreAppointmentModel
@@ -11,8 +12,8 @@ object UiUtils {
 
     //Get SectionCallback method
     fun getSectionCallback(orderList: List<StoreAppointmentModel>, context: Context):
-        VerticalSectionItemDecoration
-    .SectionCallback {
+            VerticalSectionItemDecoration
+            .SectionCallback {
         return object : VerticalSectionItemDecoration.SectionCallback {
             //In your data, implement a method to determine if this is a section.
             override fun isSection(position: Int): Boolean =
@@ -38,10 +39,18 @@ object UiUtils {
                 }
                 return SectionInfo(
                     title = storeAppointmentModel.startTime.orEmpty(),
-                    subTitle = "${orderList.count { storeAppointmentModel.startTime == it.startTime}} Products",
+                    subTitle = "${orderList.count { storeAppointmentModel.startTime == it.startTime }} Products",
                     dotDrawable = AppCompatResources.getDrawable(context, dot)
                 )
             }
+        }
+    }
+
+    fun View.isVisible(visible: Boolean) {
+        if (visible) {
+            visibility = View.VISIBLE
+        } else {
+            visibility = View.GONE
         }
     }
 }

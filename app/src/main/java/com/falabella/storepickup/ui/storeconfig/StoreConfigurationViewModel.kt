@@ -13,9 +13,9 @@ class StoreConfigurationViewModel : ViewModel() {
             "Falabella Lyon",
             "Nueva de Lyon 064, Providencia, Región Metropolitana",
             "-33.421147", "-70.610579", 1637012019,
-            "1637012019",
-            "1637019219",
-            3, "30", arrayListOf(),
+            9,
+            23,
+            3, 30, arrayListOf(),
         )
     }
 
