@@ -11,19 +11,23 @@ import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.falabella.storepickup.R
 import com.falabella.storepickup.databinding.ActivityHomeBinding
+import com.falabella.storepickup.firebase.StoreFirebaseManager
 import com.falabella.storepickup.ui.storeconfig.StoreConfigurationActivity
+import com.falabella.storepickup.utils.UiUtils
 import com.google.android.material.tabs.TabLayout
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
+    private lateinit var firebaseManager: StoreFirebaseManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        firebaseManager = StoreFirebaseManager()
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        listenForNewAppointments()
         val sectionsPagerAdapter = HomePagerAdapter(this, supportFragmentManager)
         val viewPager: ViewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
@@ -112,6 +116,18 @@ class HomeActivity : AppCompatActivity() {
 
             }
         })
+    }
+
+    private fun listenForNewAppointments() {
+        firebaseManager.observeAppointmentsChanges(true) { data ->
+            data?.let {
+                UiUtils.showNotifications(
+                    "Order Received :${it.orderNo}",
+                    "From: ${data.customerName} - ${data.orderPrice}",
+                    this
+                )
+            }
+        }
     }
 
 }

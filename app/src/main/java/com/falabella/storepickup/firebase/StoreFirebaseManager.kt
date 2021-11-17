@@ -34,8 +34,10 @@ class StoreFirebaseManager {
         }
     }
 
-    fun addOrUpdateAppointment(storeAppointmentModel: StoreAppointmentModel, callback: (Boolean) ->
-    Unit) {
+    fun addOrUpdateAppointment(
+        storeAppointmentModel: StoreAppointmentModel, callback: (Boolean) ->
+        Unit
+    ) {
         db.collection(NODE_APPOINTMENTS)
             .document(storeAppointmentModel.appointmentId.orEmpty())
             .set(storeAppointmentModel)
@@ -53,6 +55,24 @@ class StoreFirebaseManager {
             callback(dat ?: emptyList())
         }.addOnFailureListener { exception ->
             callback(emptyList())
+        }
+    }
+
+    fun observeAppointmentsChanges(isStart: Boolean, callback: (StoreAppointmentModel?) -> Unit) {
+        var isStartLocal = isStart
+        db.collection(NODE_APPOINTMENTS).addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                return@addSnapshotListener
+            }
+            if (snapshot != null) {
+                val dat = snapshot.toObjects(StoreAppointmentModel::class.java).filter {
+                    it.completed.not()
+                }.sortedBy {
+                    it.startTime
+                }
+                if (isStartLocal.not()) callback(dat.firstOrNull())
+                isStartLocal = false
+            }
         }
     }
 

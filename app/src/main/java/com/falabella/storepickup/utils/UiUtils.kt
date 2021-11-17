@@ -1,23 +1,26 @@
 package com.falabella.storepickup.utils
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.res.Resources
+import android.os.Build
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.app.NotificationCompat
 import com.falabella.storepickup.R
 import com.falabella.storepickup.model.StoreAppointmentModel
 import com.mortalcombat.stickytimeline.SectionInfo
 import com.mortalcombat.stickytimeline.VerticalSectionItemDecoration
 import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
+import java.util.*
 
 object UiUtils {
 
     //Get SectionCallback method
     fun getSectionCallback(orderList: List<StoreAppointmentModel>, context: Context):
-        VerticalSectionItemDecoration
-    .SectionCallback {
+            VerticalSectionItemDecoration
+            .SectionCallback {
         return object : VerticalSectionItemDecoration.SectionCallback {
             //In your data, implement a method to determine if this is a section.
             override fun isSection(position: Int): Boolean =
@@ -43,7 +46,9 @@ object UiUtils {
                 }
                 return SectionInfo(
                     title = storeAppointmentModel.startDate.orEmpty(),
-                    subTitle = "${orderList.count { storeAppointmentModel.startDate == it.startDate}} " + context.getString(R.string.appointments),
+                    subTitle = "${orderList.count { storeAppointmentModel.startDate == it.startDate }} " + context.getString(
+                        R.string.appointments
+                    ),
                     dotDrawable = AppCompatResources.getDrawable(context, dot)
                 )
             }
@@ -79,5 +84,28 @@ object UiUtils {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = milliSeconds
         return formatter.format(calendar.time)
+    }
+
+    fun showNotifications(title: String, body: String, context: Context) {
+        val builder = NotificationCompat.Builder(context, "inStorePickup")
+            .setSmallIcon(R.drawable.store)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "inStorePickup"
+            val descriptionText = "inStorePickup"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel("inStorePickup", name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+            notificationManager.notify("", 101, builder.build())
+        }
+
     }
 }
