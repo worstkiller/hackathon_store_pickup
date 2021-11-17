@@ -48,9 +48,12 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.rvProductsList.adapter = adapter
         //other ui elemens
         val formatTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
-        val time = formatTime.format(Date(bundleData?.startTime ?: System.currentTimeMillis()))
+        val cal = Calendar.getInstance(Locale.getDefault())
+        cal.time.time = bundleData?.startTime ?: System.currentTimeMillis()
+        cal.time
+        val time = formatTime.format(cal.time)
         binding.customerInfoTitle.text = "#${bundleData?.orderNo}"
-        binding.tvDate.text = DateFormat.getDateInstance().format(bundleData?.startTime)
+        binding.tvDate.text = DateFormat.getDateInstance().format(cal.time)
         binding.tvOrderTotal.text = bundleData?.orderPrice
         binding.customerIdLabel.text = "${binding.customerIdLabel.text}: ${bundleData?.documentNo}"
         binding.customerNameLabel.text =
