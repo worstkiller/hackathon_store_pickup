@@ -16,6 +16,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivAppIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/store" />
+
         <EditText
             android:id="@+id/ordersSearch"
             android:layout_width="0dp"
@@ -25,12 +37,26 @@
             android:background="@drawable/line_bg"
             android:hint="@string/search"
             android:padding="16dp"
+            android:inputType="numberDecimal"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ivSettings"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivClearSearch"
+            app:layout_constraintStart_toEndOf="@id/ivAppIcon"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivClearSearch"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="4dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ordersSearch"
+            app:layout_constraintEnd_toStartOf="@id/ivSettings"
+            app:srcCompat="@drawable/ic_close" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivSettings"

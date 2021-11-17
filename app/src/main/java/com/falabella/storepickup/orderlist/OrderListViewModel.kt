@@ -9,9 +9,10 @@ class OrderListViewModel : ViewModel() {
 
     private val orderListRepository = OrderListRepository()
 
-    var firebaseManager = StoreFirebaseManager()
+    private var firebaseManager = StoreFirebaseManager()
 
-    var isCompleted = false
+    private var isCompleted = false
+    var nearestAppointmentPosition = 0
 
     val orderList = MutableLiveData<List<StoreAppointmentModel>>()
 
@@ -20,6 +21,7 @@ class OrderListViewModel : ViewModel() {
             val list = mutableListOf<StoreAppointmentModel>()
             list.addAll(it)
             this.isCompleted = isCompleted
+            nearestAppointmentPosition = orderListRepository.getNearestAppointment(list)
             orderList.value = orderListRepository.getFormattedList(list, isCompleted)
         }
     }

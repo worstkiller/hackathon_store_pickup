@@ -17,6 +17,7 @@ import com.falabella.storepickup.databinding.ActivityHomeBinding
 import com.falabella.storepickup.firebase.StoreFirebaseManager
 import com.falabella.storepickup.ui.storeconfig.StoreConfigurationActivity
 import com.falabella.storepickup.utils.UiUtils
+import com.falabella.storepickup.utils.UiUtils.isVisible
 import com.google.android.material.tabs.TabLayout
 
 class HomeActivity : AppCompatActivity() {
@@ -71,6 +72,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.appBar.ivClearSearch.setOnClickListener {
+            binding.appBar.ordersSearch.setText("")
+        }
+
         binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if(searchQuery.isNullOrBlank().not()) {
@@ -107,6 +112,7 @@ class HomeActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 searchQuery = s.toString()
+                binding.appBar.ivClearSearch.isVisible(s?.length ?: 0 > 0)
                 (sectionsPagerAdapter.fragments[tabs.selectedTabPosition] as? SearchListener)?.onSearchWithText(searchQuery)
             }
         })

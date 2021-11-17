@@ -17,6 +17,9 @@ class OrderListRepository {
         }
     }
 
+    fun getNearestAppointment(list: List<StoreAppointmentModel>) =
+        list.withIndex().minByOrNull { (_, appointment) -> appointment.startTime }?.index ?: 0
+
     private fun getUpcomingList(list: MutableList<StoreAppointmentModel>) =
         with(list) { sortedBy { it.startTime }.filter { it.completed.not() } }
 
