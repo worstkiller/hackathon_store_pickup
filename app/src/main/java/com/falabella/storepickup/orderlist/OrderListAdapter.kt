@@ -34,8 +34,8 @@ class OrderListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val storeAppointmentModel = list[position]
         holder.orderIdTv.text = storeAppointmentModel.orderNo
-        holder.productsSizeTv.text = storeAppointmentModel.startTime.toString()
-        holder.customerNameTv.text = storeAppointmentModel.appointmentId
+        holder.productsSizeTv.text = holder.itemView.context.getString(R.string.products, storeAppointmentModel.products?.size ?: 1)
+        holder.customerNameTv.text = storeAppointmentModel.customerName
         holder.timeTv.text = storeAppointmentModel.startTimeSlot
         holder.itemView.setOnClickListener {
             clickListener?.onOrderClicked(storeAppointmentModel)

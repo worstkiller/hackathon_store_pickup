@@ -17,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="9:00 AM"
+        android:textAllCaps="true"
         android:layout_marginTop="8dp"
         android:textSize="@dimen/sub_title_text_size" />
 
@@ -36,8 +37,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp"
-            android:background="@color/teal_200">
+            android:padding="8dp">
 
 
             <androidx.appcompat.widget.AppCompatTextView

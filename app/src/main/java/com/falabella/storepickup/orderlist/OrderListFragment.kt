@@ -13,6 +13,7 @@ import com.falabella.storepickup.model.StoreAppointmentModel
 import com.falabella.storepickup.orderlist.OrderListAdapter.ItemClickListener
 import com.falabella.storepickup.productdetails.ProductDetailsActivity
 import com.falabella.storepickup.utils.OrderConstants.BundleKeys
+import com.falabella.storepickup.utils.ProgressDialog
 import com.falabella.storepickup.utils.UiUtils
 
 /**
@@ -22,6 +23,7 @@ class OrderListFragment : Fragment(), ItemClickListener, SearchListener {
 
     private lateinit var orderListViewModel: OrderListViewModel
     private var _binding: FragmentHomeBinding? = null
+    private var progress: ProgressDialog? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -29,7 +31,11 @@ class OrderListFragment : Fragment(), ItemClickListener, SearchListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        context?.let {
+            progress = ProgressDialog(it)
+        }
         orderListViewModel = ViewModelProvider(this).get(OrderListViewModel::class.java).apply {
+            progress?.show()
             getAppointments(arguments?.getBoolean(BundleKeys.KEY_IS_COMPLETED) ?: false)
         }
     }
@@ -44,6 +50,7 @@ class OrderListFragment : Fragment(), ItemClickListener, SearchListener {
 
         context?.apply {
             orderListViewModel.orderList.observe(viewLifecycleOwner, {
+                progress?.hide()
                 when {
                     it.isNullOrEmpty() -> {
                         _binding?.errorLayout?.visibility = View.VISIBLE

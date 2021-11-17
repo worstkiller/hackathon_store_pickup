@@ -27,7 +27,7 @@ class TimeLineRecyclerView(context: Context, attrs: AttributeSet?) : RecyclerVie
                     RecyclerViewAttr(
                         it.getColor(
                             R.styleable.TimeLineRecyclerView_sectionBackgroundColor,
-                            ContextCompat.getColor(context, R.color.purple_500)
+                            ContextCompat.getColor(context, R.color.colorDefaultBackground)
                         ),
                         it.getColor(
                             R.styleable.TimeLineRecyclerView_sectionTitleTextColor,
@@ -35,7 +35,7 @@ class TimeLineRecyclerView(context: Context, attrs: AttributeSet?) : RecyclerVie
                         ),
                         it.getColor(
                             R.styleable.TimeLineRecyclerView_sectionSubTitleTextColor,
-                            ContextCompat.getColor(context, R.color.white)
+                            ContextCompat.getColor(context, R.color.black)
                         ),
                         it.getColor(
                             R.styleable.TimeLineRecyclerView_timeLineColor,
