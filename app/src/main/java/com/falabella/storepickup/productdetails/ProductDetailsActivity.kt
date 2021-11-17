@@ -14,6 +14,8 @@ import com.falabella.storepickup.utils.OrderConstants.BundleKeys.KEY_ORDER_ITEM
 import com.falabella.storepickup.utils.UiUtils.isVisible
 import com.ncorti.slidetoact.SlideToActView
 import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ProductDetailsActivity : AppCompatActivity() {
 
@@ -45,13 +47,15 @@ class ProductDetailsActivity : AppCompatActivity() {
         adapter = ProductListAdapter(this, bundleData?.products ?: emptyList())
         binding.rvProductsList.adapter = adapter
         //other ui elemens
+        val formatTime = SimpleDateFormat("hh:mm a", Locale.getDefault())
+        val time = formatTime.format(Date(bundleData?.startTime ?: System.currentTimeMillis()))
         binding.customerInfoTitle.text = "#${bundleData?.orderNo}"
         binding.tvDate.text = DateFormat.getDateInstance().format(bundleData?.startTime)
         binding.tvOrderTotal.text = bundleData?.orderPrice
         binding.customerIdLabel.text = "${binding.customerIdLabel.text}: ${bundleData?.documentNo}"
         binding.customerNameLabel.text =
             "${binding.customerNameLabel.text}: ${bundleData?.customerName}"
-        binding.tvTimeSlot.text = bundleData?.range.toString()
+        binding.tvTimeSlot.text = "Espacio: $time"
         bundleData?.let { binding.btnMarkAsDelivered.isVisible(!it.isCompleted) }
         bundleData?.let { binding.tvDeliveryComplete.isVisible(it.isCompleted) }
     }
