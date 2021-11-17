@@ -19,11 +19,7 @@ class OrderListAdapter(
     @param:LayoutRes private val rowLayout: Int,
 ) : RecyclerView.Adapter<OrderListAdapter.ViewHolder>(), Filterable {
 
-    private var orderFilterList = mutableListOf<StoreAppointmentModel>()
-
-    init {
-        orderFilterList.addAll(list)
-    }
+    private var orderFilterList = list
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(layoutInflater.inflate(
@@ -50,16 +46,13 @@ class OrderListAdapter(
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
-                orderFilterList.clear()
-                if (charSearch.isEmpty()) {
-                    orderFilterList.addAll(list)
+                orderFilterList = if (charSearch.isEmpty()) {
+                    list
                 } else {
-                    orderFilterList.addAll(
-                        list.filter {
-                            it.orderNo?.lowercase(Locale.ROOT)
-                                ?.contains(charSearch.lowercase(Locale.ROOT)) == true
-                        }
-                    )
+                    list.filter {
+                        it.orderNo?.lowercase(Locale.ROOT)
+                            ?.contains(charSearch.lowercase(Locale.ROOT)) == true
+                    }
                 }
                 return FilterResults().apply { values = orderFilterList }
             }

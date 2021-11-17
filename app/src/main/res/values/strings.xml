@@ -2,7 +2,7 @@
     <string name="app_name">Store Pickup</string>
     <string name="tab_text_1">Próximo</string>
     <string name="tab_text_2">Terminado</string>
-    <string name="search">Busca aquí</string>
+    <string name="search">Buscar con número de pedido</string>
     <string name="no_de_clientes_permitidos">No de clientes permitidos</string>
     <string name="por_favor_fecha_para_los_espacios">Por favor, fecha para los espacios</string>
     <string name="range_selecor">Elija el rango de ranuras</string>
