@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.falabella.storepickup.databinding.ActivityMainBinding
+import com.falabella.storepickup.home.HomeActivity
 import com.falabella.storepickup.model.StoreAppointmentModel
-import com.falabella.storepickup.ui.storeconfig.StoreConfigurationActivity
 import com.falabella.storepickup.utils.OrderConstants.BundleKeys
 
 class MainActivity : AppCompatActivity() {
@@ -19,8 +19,6 @@ class MainActivity : AppCompatActivity() {
 
         // todo: sruthi: use this data from intent
         val storeAppointmentModel = intent?.extras?.getParcelable<StoreAppointmentModel>(BundleKeys.KEY_ORDER_ITEM)
-        val orderId = intent?.extras?.getString(BundleKeys.KEY_ORDER_ID)
-        binding.orderIdTv.text = orderId
         storeAppointmentModel?.apply {
             binding.customerNameTv.text = customerName
         }
@@ -29,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpMainView() {
         //click listener
-        binding.ivSettings.setOnClickListener {
-            val intent = Intent(this@MainActivity, StoreConfigurationActivity::class.java)
+        binding.customerNameTv.setOnClickListener {
+            val intent = Intent(this@MainActivity, HomeActivity::class.java)
             startActivity(intent)
         }
     }

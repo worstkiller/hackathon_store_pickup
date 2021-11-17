@@ -27,19 +27,19 @@ class TimeLineRecyclerView(context: Context, attrs: AttributeSet?) : RecyclerVie
                     RecyclerViewAttr(
                         it.getColor(
                             R.styleable.TimeLineRecyclerView_sectionBackgroundColor,
-                            ContextCompat.getColor(context, R.color.colorDefaultBackground)
+                            ContextCompat.getColor(context, R.color.purple_500)
                         ),
                         it.getColor(
                             R.styleable.TimeLineRecyclerView_sectionTitleTextColor,
-                            ContextCompat.getColor(context, R.color.colorDefaultTitle)
+                            ContextCompat.getColor(context, R.color.white)
                         ),
                         it.getColor(
                             R.styleable.TimeLineRecyclerView_sectionSubTitleTextColor,
-                            ContextCompat.getColor(context, R.color.colorDefaultSubTitle)
+                            ContextCompat.getColor(context, R.color.white)
                         ),
                         it.getColor(
                             R.styleable.TimeLineRecyclerView_timeLineColor,
-                            ContextCompat.getColor(context, R.color.colorDefaultTitle)
+                            ContextCompat.getColor(context, R.color.purple_500)
                         ),
                         it.getColor(
                             R.styleable.TimeLineRecyclerView_timeLineCircleColor,
@@ -51,7 +51,7 @@ class TimeLineRecyclerView(context: Context, attrs: AttributeSet?) : RecyclerVie
                         ),
                         it.getDimension(
                             R.styleable.TimeLineRecyclerView_sectionTitleTextSize,
-                            context.resources.getDimension(R.dimen.title_text_size)
+                            context.resources.getDimension(R.dimen.sub_title_text_size)
                         ),
                         it.getDimension(
                             R.styleable.TimeLineRecyclerView_sectionSubTitleTextSize,

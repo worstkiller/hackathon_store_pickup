@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.falabella.storepickup.orderlist.SearchListener
 import androidx.viewpager.widget.ViewPager
 import com.falabella.storepickup.R
 import com.falabella.storepickup.databinding.ActivityHomeBinding
@@ -19,6 +21,7 @@ import com.google.android.material.tabs.TabLayout
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
+    private var searchQuery: String? = null
     private lateinit var firebaseManager: StoreFirebaseManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,58 +38,32 @@ class HomeActivity : AppCompatActivity() {
         tabs.setupWithViewPager(viewPager)
         tabs.getTabAt(0)?.let {
             val tabView = LayoutInflater.from(this).inflate(R.layout.home_tab_item, null)
-            (tabView.findViewById(R.id.tabIconIv) as ImageView).setImageDrawable(
-                (ContextCompat.getDrawable(
-                    this,
-                    R.drawable.ic_pending
-                ))
-            )
-            (tabView.findViewById(R.id.tabTitleTv) as TextView).text =
-                getString(R.string.tab_text_1)
-
-            val colorFilter = it.view.findViewById<ImageView>(R.id.tabIconIv)?.setColorFilter(
+            val imageView = tabView.findViewById(R.id.tabIconIv) as ImageView
+            val textView = tabView.findViewById(R.id.tabTitleTv) as TextView
+            imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_pending))
+            textView.text = getString(R.string.tab_text_1)
+            imageView.setColorFilter(
                 ContextCompat.getColor(this@HomeActivity, R.color.white),
                 PorterDuff.Mode.SRC_IN
             )
-            it.view.findViewById<TextView>(R.id.tabTitleTv)
-                ?.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.white))
-
-            it.view.findViewById<ImageView>(R.id.tabIconIv)?.setColorFilter(
-                ContextCompat.getColor(this@HomeActivity, R.color.white),
-                PorterDuff.Mode.SRC_IN
-            )
-            it.view.findViewById<TextView>(R.id.tabTitleTv)
-                ?.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.white))
-
+            textView.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.white))
             it.setCustomView(tabView)
         }
         tabs.getTabAt(1)?.let {
             val tabView = LayoutInflater.from(this).inflate(R.layout.home_tab_item, null)
-            (tabView.findViewById(R.id.tabIconIv) as ImageView).setImageDrawable(
-                (ContextCompat.getDrawable(
-                    this,
-                    R.drawable.ic_completed
-                ))
-            )
-            (tabView.findViewById(R.id.tabTitleTv) as TextView).text =
-                getString(R.string.tab_text_2)
+            val imageView = tabView.findViewById(R.id.tabIconIv) as ImageView
+            val textView = tabView.findViewById(R.id.tabTitleTv) as TextView
 
-            it.view.findViewById<ImageView>(R.id.tabIconIv)?.setColorFilter(
+            imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_completed))
+            textView.text = getString(R.string.tab_text_2)
+            imageView.setColorFilter(
                 ContextCompat.getColor(this@HomeActivity, R.color.purple_500),
                 PorterDuff.Mode.SRC_IN
             )
-            it.view.findViewById<TextView>(R.id.tabTitleTv)
-                ?.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.purple_500))
-
-            it.view.findViewById<ImageView>(R.id.tabIconIv)?.setColorFilter(
-                ContextCompat.getColor(this@HomeActivity, R.color.purple_500),
-                PorterDuff.Mode.SRC_IN
-            )
-            it.view.findViewById<TextView>(R.id.tabTitleTv)
-                ?.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.purple_500))
-
+            textView.setTextColor(ContextCompat.getColor(this@HomeActivity, R.color.purple_200))
             it.setCustomView(tabView)
         }
+
         //click listener
         binding.appBar.ivSettings.setOnClickListener {
             val intent = Intent(this@HomeActivity, StoreConfigurationActivity::class.java)
@@ -95,6 +72,9 @@ class HomeActivity : AppCompatActivity() {
 
         binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                if(searchQuery.isNullOrBlank().not()) {
+                    (sectionsPagerAdapter.fragments[tabs.selectedTabPosition] as? SearchListener)?.onSearchWithText(searchQuery)
+                }
                 tab?.view?.findViewById<ImageView>(R.id.tabIconIv)?.setColorFilter(
                     ContextCompat.getColor(this@HomeActivity, R.color.white),
                     PorterDuff.Mode.SRC_IN
@@ -115,6 +95,19 @@ class HomeActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }
+        })
+
+        binding.appBar.ordersSearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                searchQuery = newText
+                (sectionsPagerAdapter.fragments[tabs.selectedTabPosition] as? SearchListener)?.onSearchWithText(newText)
+                return false
+            }
+
         })
     }
 

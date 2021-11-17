@@ -12,5 +12,34 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:isSticky="true"
         app:mode="vertical"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/errorLayout"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/errorIv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/store"
+            android:scaleType="center"
+            android:layout_marginBottom="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/errorTv"
+            android:text="@string/no_data_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold|italic"
+            android:layout_marginTop="20dp"
+            android:textSize="@dimen/message_text_size"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,14 +13,19 @@ import com.falabella.storepickup.orderlist.OrderListFragment
 class HomePagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
 
+    val fragments = listOf(
+        OrderListFragment.newInstance(false),
+        OrderListFragment.newInstance(true)
+    )
+
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return OrderListFragment.newInstance(position + 1)
+        return fragments[position]
     }
 
     override fun getCount(): Int {
         // Show 2 total pages.
-        return 2
+        return fragments.size
     }
 }

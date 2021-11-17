@@ -13,20 +13,14 @@ class OrderListViewModel : ViewModel() {
 
     var isCompleted = false
 
-    var orderList = MutableLiveData<List<StoreAppointmentModel>>()
+    val orderList = MutableLiveData<List<StoreAppointmentModel>>()
 
-    private fun getAppointments() {
-        firebaseManager.getAllAppointments { list ->
-            orderList.value = if(isCompleted) {
-                orderListRepository.getCompletedList(list)
-            } else {
-                orderListRepository.getUpcomingList(list)
-            }
+    fun getAppointments(isCompleted: Boolean) {
+        firebaseManager.getAllAppointments(isCompleted) {
+            val list = mutableListOf<StoreAppointmentModel>()
+            list.addAll(it)
+            this.isCompleted = isCompleted
+            orderList.value = orderListRepository.getFormattedList(list, isCompleted)
         }
-    }
-
-    fun setIsCompleted(isCompleted: Boolean) {
-        this.isCompleted = isCompleted
-        getAppointments()
     }
 }

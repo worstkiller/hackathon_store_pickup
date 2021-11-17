@@ -2,8 +2,8 @@ package com.falabella.storepickup.firebase
 
 import com.falabella.storepickup.model.StoreAppointmentModel
 import com.falabella.storepickup.model.StoreConfigurationModel
+import com.falabella.storepickup.utils.OrderConstants
 import com.google.firebase.firestore.FirebaseFirestore
-
 
 class StoreFirebaseManager {
 
@@ -49,8 +49,11 @@ class StoreFirebaseManager {
             }
     }
 
-    fun getAllAppointments(callback: (List<StoreAppointmentModel>) -> Unit) {
-        db.collection(NODE_APPOINTMENTS).get().addOnSuccessListener { result ->
+    fun getAllAppointments(isCompleted: Boolean = false, callback: (List<StoreAppointmentModel>) -> Unit) {
+        db.collection(NODE_APPOINTMENTS)
+            .whereEqualTo(OrderConstants.completed, isCompleted)
+            .get()
+            .addOnSuccessListener { result ->
             val dat = result?.toObjects(StoreAppointmentModel::class.java)
             callback(dat ?: emptyList())
         }.addOnFailureListener { exception ->

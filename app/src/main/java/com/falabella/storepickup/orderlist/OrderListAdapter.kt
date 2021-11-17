@@ -10,15 +10,14 @@ import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.falabella.storepickup.R
 import com.falabella.storepickup.model.StoreAppointmentModel
-import com.falabella.storepickup.orderlist.OrderListAdapter.ItemClickListener
 import java.util.Locale
 
-class CompletedOrderListAdapter(
+class OrderListAdapter(
     private val layoutInflater: LayoutInflater,
     private val list: List<StoreAppointmentModel>,
     private val clickListener: ItemClickListener? = null,
     @param:LayoutRes private val rowLayout: Int,
-) : RecyclerView.Adapter<CompletedOrderListAdapter.ViewHolder>(), Filterable {
+) : RecyclerView.Adapter<OrderListAdapter.ViewHolder>(), Filterable {
 
     private var orderFilterList = mutableListOf<StoreAppointmentModel>()
     init {
@@ -68,6 +67,7 @@ class CompletedOrderListAdapter(
                 orderFilterList = results?.values as ArrayList<StoreAppointmentModel>
                 notifyDataSetChanged()
             }
+
         }
     }
 
@@ -76,5 +76,9 @@ class CompletedOrderListAdapter(
         val productsSizeTv: TextView = view.findViewById<View>(R.id.productsSizeTv) as TextView
         val customerNameTv: TextView = view.findViewById<View>(R.id.customerNameTv) as TextView
         val timeTv: TextView = view.findViewById<View>(R.id.timeTv) as TextView
+    }
+
+    interface ItemClickListener {
+        fun onOrderClicked(storeAppointmentModel: StoreAppointmentModel)
     }
 }

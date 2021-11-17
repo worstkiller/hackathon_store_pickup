@@ -24,25 +24,25 @@ object UiUtils {
         return object : VerticalSectionItemDecoration.SectionCallback {
             //In your data, implement a method to determine if this is a section.
             override fun isSection(position: Int): Boolean =
-                orderList[position].startTime != orderList[position - 1].startTime
+                orderList[position].startDate != orderList[position - 1].startDate
 
             //Implement a method that returns a SectionHeader.
             override fun getSectionHeader(position: Int): SectionInfo {
+                val now = System.currentTimeMillis()
                 val storeAppointmentModel = orderList[position]
-                val dot: Int = when (storeAppointmentModel.appointmentId) {
-                    "FIN.K.L" -> {
-                        R.drawable.ic_finkl
+                val dot: Int = when {
+                    storeAppointmentModel.completed && storeAppointmentModel.startTime > now -> {
+                        R.drawable.ic_advanced
                     }
-                    "Girls' Generation" -> {
-                        R.drawable.ic_girlsgeneration
+                    storeAppointmentModel.completed -> {
+                        R.drawable.ic_competed
                     }
-                    "Buzz" -> {
-                        R.drawable.ic_buzz
+                    storeAppointmentModel.startTime < now -> {
+                        R.drawable.ic_delayed
                     }
-                    "Wanna One" -> {
-                        R.drawable.ic_wannaone
+                    else -> {
+                        R.drawable.ic_upcoming
                     }
-                    else -> R.drawable.ic_solo
                 }
                 return SectionInfo(
                     title = storeAppointmentModel.startDate.orEmpty(),

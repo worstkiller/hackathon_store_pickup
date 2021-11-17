@@ -20,7 +20,6 @@ data class StoreAppointmentModel(
     val documentNo: String? = null,
     val products: List<Product>? = null,
     var completed: Boolean = false,
-
     //vars for local use/ UI
     var startDate: String? = null,
     var startTimeSlot: String? = null,
@@ -30,23 +29,23 @@ data class StoreAppointmentModel(
 
 
     constructor() : this(
-        "",
-        0L,
-        "",
-        "",
-        0L,
-        "",
-        "",
-        0,
-        "",
-        "",
-        "",
-        arrayListOf(),
-        false,
-        "",
-        "",
-        "",
-        ""
+        appointmentId = "",
+        startTime = 0L,
+        customerName = "",
+        storeId = "",
+        endTime = 0L,
+        orderNo = "",
+        customerId = "",
+        range = 0,
+        orderPrice = "",
+        slotId = "",
+        documentNo = "",
+        products = arrayListOf(),
+        completed = false,
+        startDate = "",
+        startTimeSlot = "",
+        endDate = "",
+        endTimeSlot = ""
     )
 
     constructor(parcel: Parcel) : this(

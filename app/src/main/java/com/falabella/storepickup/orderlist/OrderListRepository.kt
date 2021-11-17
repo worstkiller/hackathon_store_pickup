@@ -4,15 +4,23 @@ import com.falabella.storepickup.model.StoreAppointmentModel
 
 class OrderListRepository {
 
-    fun getUpcomingList(list: List<StoreAppointmentModel>) = with(list) {
+    fun getFormattedList(
+        list: MutableList<StoreAppointmentModel>,
+        isCompleted: Boolean
+    ) = with(list) {
         forEach { it.updateTimeValues() }
-        filter { it.completed.not() }
-        sortedBy { it.startTime }
+
+        if (isCompleted) {
+            getCompletedList(list)
+        } else {
+            getUpcomingList(list)
+        }
     }
 
-    fun getCompletedList(list: List<StoreAppointmentModel>) = with(list) {
-        forEach { it.updateTimeValues() }
-        filter { it.completed }
-        sortedByDescending { it.startTime }
-    }
+    private fun getUpcomingList(list: MutableList<StoreAppointmentModel>) =
+        with(list) { sortedBy { it.startTime }.filter { it.completed.not() } }
+
+    private fun getCompletedList(list: MutableList<StoreAppointmentModel>) =
+        with(list) { sortedByDescending { it.startTime }.filter { it.completed } }
+
 }
