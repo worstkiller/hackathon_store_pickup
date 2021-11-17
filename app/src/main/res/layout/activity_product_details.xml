@@ -198,18 +198,6 @@
         app:slider_height="60dp"
         app:slider_locked="false"
         app:text="Marcar Como Entregado"
-        app:text_size="12sp" />
-
-    <TextView
-        android:id="@+id/tvDeliveryComplete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/scrollView"
-        android:text="@string/delivery_complete"
-        android:layout_marginBottom="40dp"
-        android:textColor="@color/purple_200"
-        android:textSize="24sp"/>
+        app:text_size="14sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

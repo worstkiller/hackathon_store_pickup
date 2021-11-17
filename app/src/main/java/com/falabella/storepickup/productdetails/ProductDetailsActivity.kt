@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.falabella.storepickup.R
 import com.falabella.storepickup.adapter.ProductListAdapter
@@ -11,7 +12,6 @@ import com.falabella.storepickup.barcode.BarcodeActivity
 import com.falabella.storepickup.databinding.ActivityProductDetailsBinding
 import com.falabella.storepickup.model.StoreAppointmentModel
 import com.falabella.storepickup.utils.OrderConstants.BundleKeys.KEY_ORDER_ITEM
-import com.falabella.storepickup.utils.UiUtils.isVisible
 import com.ncorti.slidetoact.SlideToActView
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -56,8 +56,12 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.customerNameLabel.text =
             "${binding.customerNameLabel.text}: ${bundleData?.customerName}"
         binding.tvTimeSlot.text = "Espacio: $time"
-        bundleData?.let { binding.btnMarkAsDelivered.isVisible(!it.completed) }
-        bundleData?.let { binding.tvDeliveryComplete.isVisible(it.completed) }
+        if(bundleData?.completed == true) {
+            binding.btnMarkAsDelivered.isLocked = true
+            binding.btnMarkAsDelivered.outerColor = ContextCompat.getColor(this, R.color.light_grey)
+            binding.btnMarkAsDelivered.iconColor = ContextCompat.getColor(this, R.color.black)
+            binding.btnMarkAsDelivered.text = resources.getString(R.string.delivery_complete)
+        }
     }
 
     override fun onResume() {
