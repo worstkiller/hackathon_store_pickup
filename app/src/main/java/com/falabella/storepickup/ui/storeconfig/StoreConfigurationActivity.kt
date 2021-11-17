@@ -65,10 +65,12 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
 
     private fun setUpStoreConfig(storeConfigurationModel: StoreConfigurationModel?) {
         storeConfigurationModel?.apply {
-            binding.tvStoreAddress.text = viewModel.selectedStore?.directions
-            "Espacio: ${viewModel.selectedStore?.storeSlots?.size ?: 0}".also {
+            binding.tvStoreAddress.text = directions
+            "Espacio: ${storeSlots.size}".also {
                 binding.tvStoreSlots.text = it
             }
+            binding.rangeSelector.progress = slotRange / 30
+            binding. tvRangeSelected.text = "$slotRange: min"
             binding.tvStoreName.text = storeName
             binding.tvNoOfCustomerCount.text = customersByDefault.toString()
             binding.tvDateSelected.text =
