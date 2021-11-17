@@ -3,10 +3,11 @@ package com.falabella.storepickup.home
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.falabella.storepickup.orderlist.SearchListener
@@ -97,17 +98,17 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
-        binding.appBar.ordersSearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+        binding.appBar.ordersSearch.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                searchQuery = newText
-                (sectionsPagerAdapter.fragments[tabs.selectedTabPosition] as? SearchListener)?.onSearchWithText(newText)
-                return false
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchQuery = s.toString()
+                (sectionsPagerAdapter.fragments[tabs.selectedTabPosition] as? SearchListener)?.onSearchWithText(searchQuery)
+            }
         })
     }
 

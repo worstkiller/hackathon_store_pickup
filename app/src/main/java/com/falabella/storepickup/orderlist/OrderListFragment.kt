@@ -54,6 +54,7 @@ class OrderListFragment : Fragment(), ItemClickListener, SearchListener {
                 when {
                     it.isNullOrEmpty() -> {
                         _binding?.errorLayout?.visibility = View.VISIBLE
+                        _binding?.errorTv?.text = getString(R.string.no_data_available)
                         _binding?.orderListRv?.visibility = View.GONE
                     }
                     else -> {
@@ -102,6 +103,18 @@ class OrderListFragment : Fragment(), ItemClickListener, SearchListener {
 
     override fun onSearchWithText(query: String?) {
         (_binding?.orderListRv?.adapter as? OrderListAdapter)?.filter?.filter(query)
+    }
+
+    override fun onFilteredItems(count: Int) {
+        if (count == 0) {
+            _binding?.orderListRv?.visibility = View.GONE
+            _binding?.errorLayout?.visibility = View.VISIBLE
+            _binding?.errorTv?.text = getString(R.string.no_search_results)
+        } else {
+            _binding?.orderListRv?.visibility = View.VISIBLE
+            _binding?.errorLayout?.visibility = View.GONE
+
+        }
     }
 
 }

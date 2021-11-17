@@ -20,9 +20,11 @@ class OrderListAdapter(
 ) : RecyclerView.Adapter<OrderListAdapter.ViewHolder>(), Filterable {
 
     private var orderFilterList = mutableListOf<StoreAppointmentModel>()
+
     init {
         orderFilterList.addAll(list)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(layoutInflater.inflate(
             rowLayout,
@@ -32,7 +34,7 @@ class OrderListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val storeAppointmentModel = list[position]
+        val storeAppointmentModel = orderFilterList[position]
         holder.orderIdTv.text = storeAppointmentModel.orderNo
         holder.productsSizeTv.text = holder.itemView.context.getString(R.string.products, storeAppointmentModel.products?.size ?: 1)
         holder.customerNameTv.text = storeAppointmentModel.customerName
@@ -65,9 +67,9 @@ class OrderListAdapter(
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 orderFilterList = results?.values as ArrayList<StoreAppointmentModel>
+                clickListener?.onFilteredItems(orderFilterList.size)
                 notifyDataSetChanged()
             }
-
         }
     }
 
@@ -80,5 +82,6 @@ class OrderListAdapter(
 
     interface ItemClickListener {
         fun onOrderClicked(storeAppointmentModel: StoreAppointmentModel)
+        fun onFilteredItems(count: Int)
     }
 }

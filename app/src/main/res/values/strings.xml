@@ -17,6 +17,7 @@
     <string name="id_de_documento">ID de documento:</string>
     <string name="nombre_del_cliente">Nombre del cliente:</string>
     <string name="no_data_available">Están todos atrapados</string>
+    <string name="no_search_results">Sin resultados de búsqueda</string>
     <string name="item_price">$%.2f%n</string>
     <string name="delivery_complete">Entrega completada!</string>
     <string name="please_scan_again">¡Escanee de nuevo!</string>
