@@ -20,6 +20,7 @@ data class StoreAppointmentModel(
     val documentNo: String? = null,
     val products: List<Product>? = null,
     var completed: Boolean = false,
+    var createdDate: Long = 0,
     //vars for local use/ UI
     var startDate: String? = null,
     var startTimeSlot: String? = null,
@@ -42,6 +43,7 @@ data class StoreAppointmentModel(
         documentNo = "",
         products = arrayListOf(),
         completed = false,
+        createdDate =0L,
         startDate = "",
         startTimeSlot = "",
         endDate = "",
@@ -62,6 +64,7 @@ data class StoreAppointmentModel(
         parcel.readString(),
         parcel.createTypedArrayList(Product),
         parcel.readByte() != 0.toByte(),
+        parcel.readLong(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),

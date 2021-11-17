@@ -71,9 +71,9 @@ class StoreFirebaseManager {
                 val dat = snapshot.toObjects(StoreAppointmentModel::class.java).filter {
                     it.completed.not()
                 }.sortedBy {
-                    it.startTime
+                    it.createdDate
                 }
-                if (isStartLocal.not()) callback(dat.firstOrNull())
+                if (isStartLocal.not()) callback(dat.lastOrNull())
                 isStartLocal = false
             }
         }

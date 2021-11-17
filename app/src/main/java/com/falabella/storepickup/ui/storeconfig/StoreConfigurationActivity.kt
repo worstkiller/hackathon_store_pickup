@@ -65,8 +65,8 @@ class StoreConfigurationActivity : AppCompatActivity(), DatePickerDialog.OnDateS
 
     private fun setUpStoreConfig(storeConfigurationModel: StoreConfigurationModel?) {
         storeConfigurationModel?.apply {
-            binding.tvStoreAddress.text = viewModel.selectedStore?.directions
-            "Espacio: ${viewModel.selectedStore?.storeSlots?.size ?: 0}".also {
+            binding.tvStoreAddress.text = directions
+            "Espacio: ${storeSlots.size} (${storeStartTime} a ${storeEndTime} hrs)".also {
                 binding.tvStoreSlots.text = it
             }
             binding.tvStoreName.text = storeName
