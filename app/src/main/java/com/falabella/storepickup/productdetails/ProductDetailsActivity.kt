@@ -56,8 +56,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.customerNameLabel.text =
             "${binding.customerNameLabel.text}: ${bundleData?.customerName}"
         binding.tvTimeSlot.text = "Espacio: $time"
-        bundleData?.let { binding.btnMarkAsDelivered.isVisible(!it.isCompleted) }
-        bundleData?.let { binding.tvDeliveryComplete.isVisible(it.isCompleted) }
+        bundleData?.let { binding.btnMarkAsDelivered.isVisible(!it.completed) }
+        bundleData?.let { binding.tvDeliveryComplete.isVisible(it.completed) }
     }
 
     override fun onResume() {

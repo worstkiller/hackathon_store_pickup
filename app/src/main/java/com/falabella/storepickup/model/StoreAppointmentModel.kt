@@ -19,7 +19,7 @@ data class StoreAppointmentModel(
     val slotId: String? = null,
     val documentNo: String? = null,
     val products: List<Product>? = null,
-    val isCompleted: Boolean = false,
+    var completed: Boolean = false,
 
     //vars for local use/ UI
     var startDate: String? = null,
@@ -90,7 +90,7 @@ data class StoreAppointmentModel(
         parcel.writeString(slotId)
         parcel.writeString(documentNo)
         parcel.writeTypedList(products)
-        parcel.writeByte(if (isCompleted) 1 else 0)
+        parcel.writeByte(if (completed) 1 else 0)
         parcel.writeString(startDate)
         parcel.writeString(startTimeSlot)
         parcel.writeString(endDate)

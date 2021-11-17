@@ -19,11 +19,11 @@ class BarcodeActivity : AppCompatActivity(), ScanResultListener {
     var bundleData: StoreAppointmentModel? = StoreAppointmentModel()
 
     override fun onScanSuccess(scanResult: ScanResult) {
-        // if (bundleData.appointmentId == scanResult.result.appointmentId) {
-        updateFirebaseDB()
-        //} else {
-      //  showDeliveryStatusDialog(false)
-    //}
+        if (bundleData?.appointmentId == scanResult.result) {
+            updateFirebaseDB()
+        } else {
+            showDeliveryStatusDialog(false)
+        }
     }
 
     override fun onScanFailed(reason: String) {
@@ -44,7 +44,8 @@ class BarcodeActivity : AppCompatActivity(), ScanResultListener {
             finish()
         }
         progress = ProgressDialog(this)
-        bundleData = intent.getParcelableExtra<StoreAppointmentModel>(OrderConstants.BundleKeys.KEY_ORDER_ITEM)
+        bundleData =
+            intent.getParcelableExtra<StoreAppointmentModel>(OrderConstants.BundleKeys.KEY_ORDER_ITEM)
         addFragment()
     }
 
@@ -61,13 +62,16 @@ class BarcodeActivity : AppCompatActivity(), ScanResultListener {
 
     private fun updateFirebaseDB() {
         progress.show()
-        bundleData?.let { viewModel.updateAppointmentStatus(it) { success ->
-            progress.hide()
-            if(success) {
-                showDeliveryStatusDialog(true)
-            } else {
-                showDeliveryStatusDialog(false)
+        bundleData?.let {
+            it.completed = true
+            viewModel.updateAppointmentStatus(it) { success ->
+                progress.hide()
+                if (success) {
+                    showDeliveryStatusDialog(true)
+                } else {
+                    showDeliveryStatusDialog(false)
+                }
             }
-        } }
+        }
     }
 }
