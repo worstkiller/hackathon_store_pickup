@@ -6,6 +6,16 @@ Click [here](https://drive.google.com/file/d/1_xrRfTmXPUcIDbMS5rHhxlC6wUY2KXmE/v
 **Video introduction**:
 https://www.canva.com/design/DAEwA2lvVK4/021dvVZabQC6Ke55vQ-EmA/watch?utm_content=DAEwA2lvVK4&utm_campaign=designshare&utm_medium=link&utm_source=homepage_design_menu
 
+**Objective**: To facilitate end to end solution for in-store pick up of customer orders
+
+**Implementation**: This project includes a Store manager app developed in android platform and a client side (customer facing app), developed with swift on iOS. Features like notifications when orders are picked, reminders to collect the orders, send whatsapp text messages about customers arrival at the store and many more are present. Real time updates of the orders has been enabled, in order to help Users with their order status-
+
+**Applications**: This solution has a wide scope of application, since customers need a way of receiving their orders in the most economical way.. With this solution, we give a flexibility to our customers to get what they need from the store by maintaining physical presence.. This would help them pick products from store on the way back from office and do not have to pay heavy delivery charges. This is all contactless by scanning QR code and doing the payment online.
+
+**Features**: - Schedule Order Pickup from customer app - See all the Pending and Completed in-store Pickup's - See the scheduled order pickup details - Mark pickup as completed by scanning QR code from the user device - Receive useful notifications when new pickup schedules - Configure store parameters like customers, slots, date, range - See all the stores added
+
+**Future Improvements**: We have planned for several features as a part of improvements such as reschedule the pick up process, add special instrcutions in the picker notes, providing alternate person for pick up etc.
+
 **Screenshots**:
 
 Upcoming
